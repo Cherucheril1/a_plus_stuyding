@@ -1,0 +1,43 @@
+4.1 Summarize cloud computing concepts
+	Cloud computing - server hosted elsewhere. Extends management of applications and services. Deploy infrastructure in minutes. Deploy more application instances to hand overload, remove them when traffic calms down. Deployed anywhere in the world, or you can make it specific. You can have it so that you can move application instances from data center to center, following the traffic. So whererver is busiest, will have application instances at a closeby data center. Only uses required resources, so cost is based on amount of use.   
+Common cloud models
+	Private cloud  - your own virtualized local data center
+	Public cloud - available to everyone over the internet
+	Hybrid cloud - mix of the two. Part on public, part on private. 
+	Community cloud - Several organizations share the same resources. Split costs, still private cloud, etc. 
+	IaaS (Infrastructure as a service) - HaaS (Hardware) is when you outsource your equipment. Whatever CPU, storage, etc. that you need, you'll use someone elses. End user responsible for management, security. Provider is only giving hardware, sometimes OS. EX of this is a web server provider. You have the deployement for the webiste, and you're using their infrastructure for it. 
+	SaaS (Software as a service) - On-demand software. No local installation. Login and manage email, payroll. Provider is responsible for maintenance, data storage, security. . It allows central management for data and applications. Ex, Google Mail, Office 365
+	PaaS (Platform as a service) - No servers, no software, no maintenance, no HVAC. Someone else gives you a platform and you just build shit on it. Don't have direct control of dat, people, infrastructire. Might have to login, use modules, etc. Ex, Salesforce.com
+
+Cloud characteristics 
+Share resources
+	Internal cloud - create resources on your own internal network to use for application deployement. You'll need a data center, racks, etc. for all the equipment. So there is ana upfront cost, but no ongoing costs. You're not sharing resources
+	External cloud - share resources with a public cloud. The infrastructure is owned by 3rd party. Cost can be metered, or up front.  
+Metered utilization - Pay for what you use. Or for certain actions. Cost to upload, download, and then ongoing for storage. Low entry cost, not setting up a thing here. 
+	Non-metered is when you pay a fixed cost for each "usage". Like paying for an amount of storage. So in that bill cycle, you can use it as much as you want. 
+	Rapid elasticity - Scale up and down as needed seamlessly to everyone! Allows instant resource provisioning. 
+	High availability - Lots of redundancy, so power, server, data, problems all have some buffer. 
+	File synchronization - Infromation can be duplicated across cloud locations 
+
+Desktop virtualization 
+	DaaS(Desktop as a service) - your entire desktop is running in the cloud lol. So you can access it from other devices from other locations. Apps are running as a VDI. Gives basic apps, Client side can be a minimal OS to reduce memory/CPU needs. Since all this is in the cloud, the network connectivity is super imoportant too. 		
+	Virtual desktop infrastructure (VDI) on premises
+	VDI in the cloud
+	
+4.2 Summarize aspects of client side virtualization
+Allows many OS's on one computer. Each OS only sees its own CPU, memory, storage, etc. Host based is when it's your normal computer, plus the other stuff. Or it can be a standalone serve that just hosts VMs
+Hypervisor - aka VMM (Virtual machine manager), takes care of storage, CPU, networking, security, etc. So while each OS only sees its own stuff, the hypervisor sees that its actually just one system. This software may require that you have a CPU that supports virtualization. 
+Purpose of virtual machines
+	Run legacy software and OSs. So you need to run different version of an app on the same system. So you can run one in the native OS, and then in a separate VM. Or maybe you have an older app that only runs on old OSs. 
+	Cross platform virtualization - One physical device, but take advantage of all the strengths and weaknesses of a number of OSs. Also, no need for partitions or rebooting to switch between OSs, just move your mouse into the other window. Saves time, resources. 
+	Sandbox - Isolated testing environment. Gives space to develop changes to code, try it out, etc. Can also take "snapshots", so you can return to a previous configuration. Write code in a secure envirpnment and test stuff. Then you can move on to testing. 
+	Test development - Adds environmental conditions to stimulate better. 
+Resource requirements - CPU processor for Intel will be VT (Virtualiztion technology) and for AMD will be AMD-V. Memory, you'll need far more than each OS asks for. You need storage, so you need enough space to store all the information associated with all the OSs n shit u finna be runnin. For network, each virtual OS needs to be configured with the proper net config. 
+Security requirements - Hypervisor is a sweet spot usually, cause its so central. 
+	VM escaping is when a virus realizes its on a guest OS, gets into the hypervisor, and moves to other guest OSs. If there's different users on a physical system, this may allow malware on one customer's machine to jumo to another or collect data from it. 
+	Usually will just be traditional security features like firewall, anti virus, etc. 
+	Be careful for preinstalled VMs... they literall put shit in there so that u get cucked after downloading. 
+Network - Each VM has its own configuration, and the hypervisor can determine how those VMs will communicate. 
+	Shared network address is when VM has the same address as physical machine. And then a private IP address is used internally. NAT used to communicate using the address of the hypervisor. 
+	Bridged network address is when each VM has it's own ip address. So each VM is on the physical network. 
+	Private address - VM does not communicate outside virtual network. 

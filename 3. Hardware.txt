@@ -1,0 +1,337 @@
+3.1 Explain basic cable types and their connectors, features, and purposes. 
+Network cables - basic unit of network communication, and usually you only get once chance to build the infrastructure... do it right. 
+
+	Copper - usually twisted pair copper cabling. 4 pairs that are 2 wires each with equal but opposite signals. They are transmit +- and recieve +-. Because of the twist, one signal will always be moving away from the interference, and by comparing the two signals at the end you can reconstruct the signal. Pairs in the same cable will have different twist rate, so interference to the cable will cause all 4 pairs to have different signals at the end. 
+		Cat 5 - 1000BASE-T, up to 100 meters
+		Cat 5e (enhanced) - same as above, but has additional validation tests to it, indicated by the e. Current cables will all be e, only existing infrastructure uses the old one. 
+		Cat 6 - 10GBASE-T unshielded up to 55m, shielded up to 100m 
+		Cat 6a (augmented) - 10GBASE-T up to 100m
+
+		Coaxial - two or more forms share a common axis. RG-6 is one that's used for TV and cable modem. 
+
+		STP (Shielded twisted pair) - additional shielding around entire cable and/or the individual wires. Also contains grounding wire. S for braided shielding, F for foil. So it'll be indicated like (overall)/(individual) TP. So like F/UTP means unshielded individual wires and foil shielded overall cable. 
+			Direct burial STP - For a cable outside, you might want to bury it. These have special waterproofing, can be filled with gel that repels water, might be able to put it down without a conduit. Usually STP for rigidiy, strength, interference. 
+
+		UTP (Unshielded TP) - most common. No shielding around individual wires or the overall cable. 
+
+	Plenum - Above the drop ceiling may be ducts for cold and hot air. Others will have ducts for cold air, but warm air is just sent to the plenum, which is a shared air space. So networking is in this area, which is bad since a fire in this area will create toxic fumes from the cables. Then it goes into the shared air duct, and disaster. So make sure these cables are plenum rated. Traditional is PVC, plenum ones are FEP or low smoke PVC. plenum ones are not as flexible. 
+	
+
+	Optical (Fiber) - data sent by light, the visible spectrum. So no RF, meaning they're more secure, difficult to wire and tap. And no RF interference. Signal is also good range. 
+		Fiber is surrounded by cladding, which absorbs light instead of reflecting it back into the core. Around that is the buffer coating that protects everything on the inside. The ferrule is a ceramic protector around the fiber optic core. 
+		Multimode fiber - short range (up to 2km). cheaper lightsource like leds. multimode because multiple reflections can occur due to side. 
+		Singlemode fiber - longer distances (up to 100km) with expensive light sources, like a laser. Core is much narrower causing a single mode. 
+
+	T568A/B - TIA568 cabling standard for commercial building telecommunications. A and B have different pin assignments for 8P8C connectors. A for horizontal, B for end users. They're color standards btw. Same functionality, not better or worse, but not compatible. 
+		For the 2 terminations... the difference is only orange and green lol. Basically they're flipped. A starts with green, B starts with orange. orange and white / green and white for the first wire btw, and then solid. 
+	
+Peripheral cables 
+
+	USB (Universal serial bus) used for most peripherals. USB 1.1 had 2 speeds at 1.5 Mb/s at 3 m and 12 Mb/s at 5 m
+	USB 2.0 increased it to 480 Mb/s for 5m 
+	USB 3.0 AKA SuperSpeed is 5Gb/s for 3m, but cable length is not actually specified. 
+		1.1/2 will have USB-A, USB-B, mini-B, micro-B connectors.
+		3.0 has a different standard B plug, but the standard A plug looks the same. The micro-B plug is super different, way wider. 
+	USB-C - replaces all connectors with one, and its reversible. "USB-C" describes the connector, not the signal on it. So you can send power, data, video, etc. all on one cable. 
+	USB 3.1 - Changed name of 3.0 to 3.1 gen 1 lol. So then 3.1 is called 3.1 gen 2 or SuperSpeed+. Gen 2 has 10Gbit/s 
+	USB 3.2 - Doubled the bandwidth available and used USB-C cables for it. Uses an extra lane of communication in the C cable. So now 3.0 changes to 3.2 gen 1 lol. And then USB 3.2 gen 2. USB 3.2 Gen1x2 uses 2 gen 1 lanes to give 10gpps. USB 3.2 Gen2x2 is 20.  
+	Serial - Before USB, 9 and 25 pin connectors for peripherals. Sends RS-232 (recommended standard) signals. It was a super common serial communications standard so you'll still find DB-9 and DB-25 connections on printers, mice, modems, networking, etc. 
+	Thunderbolt - high speed serial connection with data and power on the same cable. Based on MDP (Mini DisplayPort) for the connection type. Copper or fiber, for 3m and 60m ranges. Can be daisy chained, up to 6.  
+		Thunderbolt v1 - 2 channels with 10Gbit/s each, so 20Gbit/s total. 
+		Thunderbolt v2 - 20 gbit/s aggregated the channels 
+		Thunderbolt v3 - uses USB-C. 40 Gbit/s aggregated. 
+	
+Video cables
+
+	HDMI (High definition multimedia interface) - Video and audio, all digital. 20m range before problems. 
+		Type-A - 19 pin proprietary is the common connector we see. 
+
+	DP (Display port) - digital standard with digital and audio. 2 interfaces, the standard and the mini DisplayPort. You can't pull the standard one out, you have to press the lever to release pins. Compatible with HDMI with a passive adapter. DP - HDMI and HP - DVI.
+ 
+	DVI (Digital visual interface) - Send video over single (3.7 Gbps) and dual link (7.4GBps). No audio support. 5 different interfaces. DVI-A supports analag, DVI-D supports digital. DVI-I (integrated) supports both. D and I have 2 subtypes each for single link and dual link. 
+	VGA (Video graphics array) - DB-15 connector, technically a DE-15 connector. 15 pins. Always blue, has video but no audio. Analog signal, so image degrades after 5-10m. 
+
+Hard drive cables 
+
+	SATA (Serial advanced technology attachment) - Exclusively for inside a computer - an external version is the eSATA. 15 pin power and 7 pin data. Molex as well. 
+	eSATA (External SATA) - Matches SATA speeds, allows for cable length of 2m. Same standard as SATA, same size connector but different. 
+
+	SCSI (Small computer system interface) - originally to string peripherals together (daisy chain) on a single bus. Not just for drives. Different SCSI standards with different interfaces and cabling. Parallel and serial options. Does a lot of the configuration itself. Used in legacy and also for virtual systems. 
+		SCSI ID - every device on the bus is assigned one. 
+		LUN (Logical unit) - defined in each SCSI ID. Let's you select a single drive in a drive array. 
+		Terminator - placed at the end of a SCSI chain, can be internal or a separate device. 
+		SAS (Serial attached SCSI) - an improvement that doesn't need jumpers, terminators, or settings. Switched from parallel to serial, increading throughput. No more daisy chains cause you have point to point connections. No termination since the bus just has 2 devices: controller and drive.  
+
+	IDE (Integrated drive electronics) - AKA PATA (Parallel AT Attachment). Used to be 40 wire cables, now 80 wires. 40 pin connector. Actually 39, one missing for orientation purposes.
+ 
+Adapters
+	Adapter - converts between electrically compatible interfaces. 
+	Converter - convert from one signal format to another, ex. USB to ethernet
+
+	DVI to HDMI - DVI-D is electrically compatible with HDMI, so no signal conversion needed. No loss of video quality. 
+	DVI to VGA - DVI-A has analog signals, so they're compatible, but only at 640x480 resolution. DVI-D will require a converter. 	
+	USB to Ethernet - some laptops don't have an RJ45 connection. So you can use this converter. 
+	USB-C to USB-A - Adapter
+	USB hub - connect many devices with high speed USB connectivity. Multiple types of interfaces on the hub. 
+
+Connector types
+	RJ11- Registered jack type 11. 6P2C (6 position, 2 conductor) 2 wires, but 6 positions for wires. Some may have additional wires. This is for telephone or DSL. 
+	RJ45 - 8P8C, for ethernet, but sometimes something else. 
+	F type - Cable modem, cable TV. Coaxial threaded connector. Uses DOCSIS. 
+	ST (Straight tip) - The end has a long ferrule sticking out. Plugs in and locks in with a turn, bayonet connection. 
+	SC (subscriber connector) - AKA Square connector. 2 fibers, Can be single or 2 separate runs. 
+	LC (lucent connector)- AKA Local connector. Single interface with 2 separate fiber connections. Usually transmit and receive, but can also be separate strands. 
+	Punchdown block - wires are punched into the block, and connectors are added to it. Let's you permanently attach wires for easier management. 
+	USB 1.1/2.0 - Standard A, Standard B, miniB, microB. Standard B for peripherals, micro and mini for mobile. 
+	USB 3.0 - Standard B and micro-B are different. Standard A is same size but additional pins.	
+	USB-C - Double sided, 24 pin, small. Both host and device side. Used for USB, Thunderbolt, etc. 
+	Molex - 4 pin peripheral power connector. +12V and +5V power for devices in the computer case. 
+	Lightning port - Apple proprietary 8pin connector. Advantages over microUSB, higher power output, reversible design. 
+	DB-9 - D subminiature or Dsub. B size, 9 pin. Used for RS-232 (recommended standard) signals for serial communications. Can be used as a configuration port, like switches and routers. 
+
+3.2 Given a scenario, install the appropriate RAM
+RAM Types - Data and programs can only be used after moved to the RAM
+	DIMM (Dual inline memory module) - dual because electrical contacts different on each side. 64 bit data width. 
+	SODIMM (Small outline dual inline memory module) - These are for laptops and mobile devices, half the width of DIMM. 
+	DRAM (Dynamic RAM) - memory on the memory module. Dynamic because it's always refreshed to prevent data from disappearing. Random access because you can access any storage location directly, as opposed to like a tape recording. 
+	SDRAM (Synchronous DRAM) - Synced with the system clock. Allows timeframe for sending and receiving data. And lets other components know when certain data will be transferred. 
+	DDR - double data rate, as opposed to SDR (single data rate). 1 clock cycle transfers 2 bits of data instead of 1. The notch at the bottom prevents you from installing the wrong version of memory.
+	DDR3 - Twice the rate of DDR2. Larger chips, up to 16GB
+	DDR4 - Faster than DDR3, 64GB max.
+	DDR5 - Faster, still 64GB/ 
+
+	VRAM (Virtual) - AKA swap file, virtual memory. Unused piece of data in RAM goes to drive, allowing space for something else. Managed automatically, some configuration settings. 
+	Multi channel memory - You have multiple memory modules. The capacity should match for each module. So single, dual, triple, and quad channel memory. 
+
+	Error handling	
+	Parity memory - adds a parity bit, but doesn't always work and can't correct the error. Even parity is when the bit makes the number of 1's in that data even. 
+	ECC (Error correction code) - Detects errors and corrects them on the go. Not all systems use it, and it looks the same as non ECC. 
+
+3.3 Given a scenario, select and install storage devices.
+
+Hard Drives - Non volatile magnetic storage. Non volatile because information stays even when there's no power. Random access. Has moving parts, spinning platters, actuator arms, etc. Speed limitations and breakage risk. Platter spins on a spindle, actuator controls an arm over the platters. The arm has a head at the end that locates, retrieves, and writes data. 
+	Speeds: 5400, 7200, 10000, 15000 rpm
+	Form factor: 2.5, 3.5 in.
+
+SSD (solid state drive) - non volatile, no moving parts. Much faster performance. 
+	Communication interfaces
+	SATA - You can remove a SATA drive and replace it with an SSD with the same SATA interface. 
+	mSATA (mimi SATA) - Smaller than 2.5 in. form factor. For Mobile devices, some desktops. Only used briefly before M.2 came out
+	NVMe - SATA was designed for hard drives, using AHCI (Advanced host controller interface) to move data from drive to RAM. But SSD's are faster, so to prevent bottlenecking a new standard was introduced, NVMe (Non volatile memory express). Not a SATA interface, this is an M.2 interface. 
+	M.2 - smaller form factor, no SATA data or power cables. Can use PCI express bus. Has different connector types, M.2 factors have "keys" that have to be compatible. B, M, B and M key. Not all M.2 has NVMe, sometimes its using AHCI. 
+	Form factors: M.2, mSATA
+
+Drive configurations - RAID (redundant array of independent[inexpensive] disks) is not backup, it is just to maintain uptime and availability. Different levels, some don't even provide redundancy. 
+	Raid 0 - Striping. At least 2 drives, all data is split evenly between the drives. Higher performance because you're writing twice, but no redundancy. A single drive failure ruins the array. 
+	Raid 1 - Mirroring. Data is duplicated to another drive. Twice as much drive space needed, but high redundancy.
+	Raid 5 - Striping with parity, needs at least 3 disks. File blocks are striped like RAID 0, but with a parity block. Efficient use since files aren't duplicated, though space is used for parity. High redundancy since data is still available after failure. The data needs to be rebuilt in real time from the parity information. This may cause a performance hit. 
+	RAID 10 (1+0) - Stripe of mirrors. At least 4 drives, each stripe of data is copied. Combines the speed of striping with the redundancy of mirroring. 
+
+Removable storage
+	Flash drive - Flash memory. EEPROM (Electricall erasable programmable read only memory). Non-volatile storage. Limited number of writes, but can still read. Not for archival storage, have a backup. 
+	Memory cards - Also flash memory. SD (Secure digital), miniSD, microSD. Older ones like compact flash and xD-picture card.
+	Optical drives - small bumps are read with laser beam. Relatively slow, for archival media. Different formats: CD-ROM, DVD-ROM, BluRay. There are internal and external optical drives. 
+
+3.4 Given a scenario, install and configure motherboards, CPUs, and add on cards
+Motherboard form factor - Basic layout regardless of size. Power connectors don't change, it's pretty standard. Check that it fits the case size, check the airflow needed. 
+	ATX (Advanced technology eXtended) - Standard ATX is what you'll usually see in a desktop. 20/24 pin power, additional power on motherboard for CPU. 
+	ITX (Information technology eXtended) - Mini-ITX for smaller computers. Low power motherboards. Screw compatible with ATX. Single purpose computing, streaming, etc. 
+
+Bus - a series of communication paths inbetween components on the motherboard. 
+
+Motherboard connection types
+	PCI (Peripheral component interconnect) - 32 and 64 bit bus width. Parallel communications. Not that common anymore. Also can be 3.3V or 5V depending on the key. 
+	PCIe (PCI express) - Newer version replacing PCI. Serial communication, slower devices won't slow down everybody else. The paths are called PCIe lanes. 1,2,4,8,16,32 full duplex lanes. For example, x32 is by 32. 
+ 
+Power connectors
+	24-pin main motherboard power : +- 3.3, 5, 12V. Used to be 20 pin for the original ATX. 24 pin added for PCIe power. 24 pin connector can still be plugged into 20 pin motherboard. Sometimes its modular with 20 pins, so you can add 4. Keyed, so inserted only one way. 
+	4 pin ATX : 12V additional power for older motherboards, usually for CPU. Could be labeled ATX12V, P4, CPU. Keyed. 
+	SATA - Connect hard drives and SSDs. 
+	eSATA - External SATA connection for external drives or if you don't have anymore space in the case. Keeps the same performance as internal SATA. Can be builtinto the motherboard or an expansion card. 
+	Headers - pin headers. Groups of pins at the edge of a motherboard. Could be power, peripheral connections, lights, buttons. Some are used for power and control of the fans. To connect case lights to the motherboard, you can use the connectors that came with the case and plug them into the appropriate headers. 
+	M.2 - Newer motherboards. Plug in an SSD, fasten with a screw. 
+
+Motherboard compatability
+	CPU sockets: AMD v intel, both really good and the difference is subtle. AMD tends to be cheaper but this changes over time. The motherboard is designed for one of these, so you're locked in. The sockets are different. 
+	Server - usually a multisocket motherboard. Also at least 4 memory slots and additional expansion slots. Usually designed for a rack mounted system, so it'll all have to fit the smaller form factor. 
+	Multisocket - the motherboard has multiple CPU sockets, which allows you to split the load. 
+	Desktop - Ranges from full size to compact systems, maybe even contained in the monitor. Single CPU, 2 or 4 memory slots, a few expansion slots. 
+	Mobile - Small and light motherboards. CPUs for laptops are limited in speed and built for power usage, thermal throttle, etc. Very limited system modification. Laptop motherboards are usually proprietary, so replacements have to be exact. When a piece stops working, you usually have to replace the entire motherboard. 
+
+BIOS (Basic input/output system) AKA firmware, system BIOS, ROM BIOS. Flash memory is more common than ROM today.  Starts the computer and loads the operating system. Initializes CPU and memory. Runs POST (Power on self test) , which is a test to see if memory, cpu, video, inputs are in place. Then it looks for the boot loader from which to start the OS.
+Sometimes you have a backup BIOS so that you can make changes, and if they cause an error you can just load the last copy. 
+
+Legacy BIOS - The original text based BIOS, 25 years. Older OSs talked to hardware through BIOS instead of directly. These also have limited hardware support. No drivers. 
+
+UEFI (Unified extensible firmware interface) BIOS - Based on Intel's EFI standard. Standardized certain features of BIOS. Replaces legacy BIOS.  
+
+BIOS (Basic input/output system)/UEFI settings - virtual bios can be changed with HyperV instead of changing the one at your local computer. Also VMware. Not virtualbox, for which you would need an simulator. Make sure you make a backup of the configurations before changes, because it can go seriously wrong. Take notes, take a picture. Don't make changes unless you're sure what it does.
+	Fast startup - Windows 8,10,11. System isn't actually completely powered down, so the BIOS isn't accessible. You can hold shift while restarting to stop this, or turn it off in settings. Or interrupt normal boot 3 times and it'll give you access to the boot options. 
+	Boot options - Disable hardware (prevent access to the OS), modify boot order, 
+	USB permissions - Security concern, since someone can take data. Convenient and high speed, so they can get away with it. 
+		disable completely, disable certain interfaces, etc. 
+	TPM (Trusted platform module) security features - Hardware that helps with cryptographic functions. 
+	Fan considerations - Could have multiple fans, like one overall and one for CPU. Motherboards usually have integrated fan controllers that detect the temperature on the board and adjust the fan speed. BIOS lets you change the performance mode. 
+	Secure boot - Part of UEFI. Prevents malware from the OS or drivers from infecting the BIOS as well. Signs known good software with a digital signature that is associated with that system, allowing it to detect if the boot process it's going through has been tampered with or not. The BIOS must include the manufacturer's public key. Secure boot will check the digital signature with the public key. Can be turned on/off in BIOS. 
+	Boot password - BIOS/User password prevents system from starting without proper credentials. Supervisor password prevents changes in BIOS without credentials. If you forget, you'll have to reset the BIOS. The BIOS configuration is held in flash memory, and it can be reset with a jumper. CMOS (Complementary metal oxide semiconductor) - a type of memory that was previously used for BIOS, but now it's flash. Has a battery with it to maintain BIOS configurations and date/time. So you could remove the battery to reset it. With flash BIOS, we just use CMOS for date/time. 
+
+Encryption
+	TPM - Hardware that helps with cryptographic functions. Has a cryptographic processor, random number generator, key generator, etc. on it. Has persistent memory, certain keys can be burned in and never changed as long as the TPM is still connected. You can use this to verify keys that are already on the system, or digitally sign data so that you can trace it to it's TPM. Password protected, so brute force attempts won't work. 
+	HSM (hardware security module) - For larger environment, lets you manage many cryptographic keys. Could be a stand alone device, an adapter card, etc. Key backup to store all the keys from your servers. There's also "lighter" ones for personal use. Like a smart card, usb drive, flash memory, etc. Cryptographic accelerators are built into the system, so it can take some of the cryptographic load from the servers. 
+
+CPU architecture
+	x86/x64 - most modern are 64 bit. Older ones have 32 bit (x86). Refers to the CPU architecture. This is 4GB vs 17 billion GB of values that the processor can store. But the OS will have a max supported value so it's not going to actually be that high. The drivers are specific to the OS version, 32 vs 64. 32 bit OSs can't run 64 bit apps, but 64 can run 32. In windows, you'll have 2 folders to show the 2 different family of apps
+	ARM (Advanced RISC machine) - a CPU architecture developed by ARM, that other manunfacturers use to build ARM based CPUs. Known for being fast, effiecient, less power, less heat. Usually for IoT and mobile devices. Line between ARM and 64 bit is blurring. 
+	Single core - Processor cores are where the processing happens. 
+	Multi core - dual core, quad core, octa core, etc. Each core will have caches and also a shared cache for all cores. Modern CPUs tend to have some memory and video built in. 
+	Multithreading - HTT(Hyper Threading technology) A single CPU acting like 2 or more. Not actually twice as effective, more like 15-30%. The CPU and the OS must both support HTT. 
+	Virtualization support - Run other OSs in a single hardware. Running linux in windows for ex. Resource intensive, so it wasn't as good in software. Now it's in CPU hardware. VT (Intel virtualization technology) and AMD V (AMD Virtualization) respectively. Some virtualization software requires you to enable these settings in the CPU. 
+
+Expansion cards - Expand functionality of your computer. Relatively simple process, might be installing hardware, might need drivers. Make sure the card is compatible with your motherboard, check the documentation. Look at number and types of slots. Check the adapted card requirements. Look at the knowledge base, or support forums to check for other tips/info. Might have to install drivers before the hardware or vice versa.
+	Sound card - High end audio output. Multiple inputs. 
+	Video card - Discrete graphic card. Many CPUs include an integrated GPU, but this is better. Usually if you plug a display into the motherboard, it means youre connecting to the integrated GPU and not the discrete one. 
+	Capture card - Video as an input. Video capture, live streaming, external cameras, etc. High performance, 
+	NIC - Ethernet connection. Usually built in, but if you need more or if it's broken. Some devices that need these extra connections are servers, routers, etc. A multi port ethernet card lets you connect to 4 ports all on one card. 
+	Driver - Can be built in or downloaded. Make sure its updated from the manufacturers website. Might require you to uninstall the existing version. Can be done through windows device manager, or a proprietary setup. Or if it's just a driver file, you use Windows device manager to add it. Then check device manager to see if it's working. 
+
+Cooling
+	Passive - No fans, no other cooling device. Silent operation. Used for small devices, or for systems with specific functions. Manufacturer will usually control the functions so that it doesn't get overheated. 
+	Heat sink - Piece of metal that dissipates heat through conduction. The gridded/finned architecture increases surface area so the heat is transferred to air faster. Might have a fan on top of the heat sink. Or huge heat sinks with big fans. 
+	Thermal paste - AKA thermal grease, conductive grease. creates good contact between the heat sink and the component, and improves conductivity. Only a small amount. 
+	Thermal pad - Conduct heat without a mess. These are cut to size, won't leak, and is almost as effective as thermal paste. Not reusable, you'll have to replace it each time you remove the heat sink; not the case with paste. 
+	Fans
+		Case fans - Cool air is pulled through the system, absorbs heat from the components, and then is pushed out. Motherboard layout, case layout, component wiring, all affects air flow. But you have many different sizes, speeds, noise level, and options for fans. 
+		On-board fan - A fan for only cooling one adapter card. Could be bulky, taking up space. Usually on high end cards. 
+	 Liquid - Coolant circulated through computer, usually water. For higher end systems, or if you're overclocking. Used in combination with radiators, fans, etc. 	
+
+3.5 Given a scenario, install or replace the appropriate power supply
+	ALWAYS DISCONNECT FROM POWER SOURCE WHEN WORKING ON DEVICE. Some devices even store charge that you should know how to discharge. Computer uses DC power, but the power supply provides AC power. The power supply can convert this. 
+Input 110-120 VAC vs 220-240 VAC
+	US/Canada has 110-120 VAC at 60Hz
+	Europe has 220-240 VAC at 50Hz
+	Power supply may have a switch to switch between the two voltages, or maybe it does so automatically. Never plug a 120V supply into 230 V power source. 
+
+Output 3.3V vs 5V vs 12V
+	Different voltages for different components. Positive and negative voltage
+	+12V - PCIe adapters, harddrive motors, fans, most modern components
+	+5V - Some legacy components, modern ones use 3.3V
+	+3.3V - M.2 slots, RAM slots, etc. 
+	+5VSB (Standby) - When the system is in hibernate mode, so it's constantly checking to see if you're going to press the power button.
+	-12V - Integrated LAN, old serial ports, some PCI cards
+	-5V - ISA adapter cards, 
+
+20 pin to 24 pin motherboard adapter
+	24 pin motherboard power - 24 pins added for PCIe. Provides 3.3V, +- 5V, +- 12V
+	20 pin connector - original ATX standard. 24 pin connector can still be connected to 20 pin port. Also can be 20+4
+
+Redundant power supply - 2 or more power supplies. Each one can handle 100% of the load, so normally they split the work. Hot swappable since you can leave the machine running on one supply. 
+Sometimes they can have fixed connectors. Maybe too many, maybe not enough. 
+Modular power supply - Power supplies may have fixed set of cables for component power. It could be too many, or not enough. Enter modular. 
+	Add cables as needed, fewer leftover wires, better airflow, more expensive.
+Wattage rating - Usually the measure to size a power supply. Bigger isn't necessarily better, cause it's more expensive and doesn't add any performance. But having additional capacity is good if you need more components in the future. The physical size is standard so you can usually fit any power supply. Older systems could have proprietary sizes. 
+	Calculate the watts required for all components. Video adapters will usually be the biggest draw. 50% capacity is a good rule of thumb. 
+
+3.6 Given a scenario, deploy and configure multifunction devices/printers and settings
+
+MFP (Multi function device) - has printing, scanning, fax, network connectivity, phone line connectivity, printing from the web. Complex, many parts, lots of maintainence. 
+
+Properly unboxing a device - setup location considerations
+	Can be large, so make sure there's room and walkways. 
+	Power, network connectivity, accessibility. 
+Use appropriate drivers for a given OS
+	PCL (Printer control[command] language) - Common through industry. 
+	PostScript - higher end printers, but not always
+	Printer drivers are specific to a printer model , and an OS. Also, 32 vs 64. 
+	PCL printer needs PCL drivers, etc. 
+
+Device Connectivity - Usually will have multiple options. 
+	USB - USB B for the printer, USB A for the computer. 
+	Ethernet - RJ45 
+	Wireless - Bluetooth, 802.11 infrastructure mode (with an AP), 802.11 Ad hoc mode (no access point, direct link between devices
+
+Public-shared devices 
+	Printer share- Printer connected to computer, computer shares the printer, computer must be running. 
+	Print server - print directly to printer, jobs are queued and managed on the printer. Managed could be web based front end, or an exe in the OS
+
+Configuration settings
+	Duplex - print on both sides of the page without manually flipping the paper
+	Orientation - Portrait or landscape 
+	Tray settings - If the printer has multiple trays and they can have different types of paper. 
+	Quality - Resolution, color, greyscale, color saving mode. 
+Security 	
+	User authentication - You could set it so everyone can print. Or allow/disallow individuals and groups. Other rights like print, managing the printer, managing documents, creating special permisissions. 
+	Badging - Authenticate with your employee badge or something right as you go up to print. 
+	Audit logs - Who printer, how many pages, what type of print. Lets you manage costs, for security as well. This could also be in Event viewer, and sometimes there's logs that are built in to the printer or print server.  
+	Secured prints - PIN to protect printing. 
+
+Network scan devices
+	Email - Scans are sent to an inbox, but large ones can take up space. 
+	SMB (Server message block) - Send the scan to a folder. Alternatively send it to Microsoft Share. 
+	Cloud services - Save scan in cloud. Cloud storage account, google drive, drop box, etc. 
+ADF (Automatic document feeder)/flatbed scanner - Could also be a standalone device. Let's the multifunction device read the information on the page and save it as a file. Could also have an ADF, so you can scan a stack of documents instead of one by one. 
+
+3.7 Given a scenario, install and replace printer consumables
+Laser - High quality and fast printing. But lots can go wrong, and it requires on printer memory.
+Laser printing components 
+Imaging drum - OPC (Organic photoconductor drum) drum image is drawn onto photosensitive drum with a laser. The charged drum then picks up toner, and transfers it to the paper. Imaging drum can be together or separate with the toner cartridge. 
+Fuser assembly - Uses heat and pressure to melt the toner into the page permanently. 
+Transfer belt and roller - for color printing. Cyan, yellow, magenta, black, as 4 separate cartridges. Image from each cartridge is drawn on paper, and then the toner is pressed permanently. 
+Pickup roller - Pickups up paper, a single page. Multiple sheets, or no sheets, are both a problem. Periodically clean and replace. 
+Separation pads - Pull only the top page from the paper tray. Prevents multiple sheets of paper. Small, cheap, easy to replace. 
+Duplexing assembly - Print on both sides of the page without manual flipping. Print one side, and flip, and print other side. Printer must have a built in or add on mechanism that allows this. 
+Laser printing process
+Processing - Data is sent to printer, the page is rendered in printer memory. 
+Charging - Charge roller or corona wire is used to provide a negative charge over the drum. Basically "clears" the drum
+Exposing - The laser writes the image to the drum. The laser turns negative charges into positive ones. 
+Developing - The toner is negatively charged, so it'll stick to the positive sections 
+Transferring - The toner is transferred to the paper. 
+Fusing - Heat and pressure melts the toner into the paper
+Cleaning - Remaining toner on the drum gets removed 
+Step 2-7 may be repeateed for a sinlge page until its done printing 
+
+Laser printing maintenance
+Replace toner - Check the messages, low isn't empty. Can include the OPC drum in the cartridge. So keep it in the dark bag, it's photosensitive. Power down, open printer, remove old cartdrige, remove strips, wraps, etc. from the new cartrdige, install the new cartridge. 
+Applu maintenance kit - Heat, pressure, moving parts, laser printers will wear out over time. This kit usually provided by the manufacturer. Feed rollers, fuser unit, etc. The manufacturer will usually give you information about how often to maintain. Related to pages printed, may have a counter inside that keep track. Power down, remove old gear, add new, reset the counter.  Be careful, it could be hot. 
+Calibrate - Different cartridges could have different densities. Calibration will adjust the density. Can be automatic or manual
+Clean - Toner, paper dust, etc. Check manufacturer recommendations. Water, IPA (Isopropyl alcohol), no harsh chemicals. Outside with a damp cloth. Inside, damp cloth with cold water, be wary of vacuums. Was toner from skin with cold water, clean rollers with IPA. 
+	
+Inkjet - Inexpensive, quiet, high resolution. Ink is expensive and proprietary. Fades rapidly over time. Ink clogs easily. 
+Ink cartridge - place drops of ink on paper. CMYK (Cyan, magenta, yellow, key[black]) 
+Print head - sometimes included in the cartridge. Lets you get new ink and a new print head at the same time .
+Roller - pick up and feed paper through the printer. Keep clean and non worn down. 
+Feeder
+Duplexing assembly - Print on both sides of page without manual flipping. 
+Carriage belt calibration - Cartridge held in carriage is moved over the page. The belt moves the carriage back and forth while dropping ink on the page. 4 separate print heads, so it needs to be aligned through calibration. It aligns the nozzles to the paper. The lines should be crisp and colors should align. Usually prints a callibration page output that can tell you if you need minor adjustments.
+Inkjet maintenance
+Clean heads - Small drops of ink, small holes - will get clogged. Big problem causing streaks or missing colors. Some printers will automatically clean every day. You can also start the cleaning manually with a button press or something. And then there's actually cleaning it yourself. Remove the cartridge, clean the printer head, place it back. 
+Replace cartridges - Usually separate colors, CMYK. Some cartridges may combine these. So you have a CMY cartridge, and a Key (black) one. If any of those colors is deplete, the whole cartridge has to be changed out. So individual carts are more efficient. Second to replace. The old ones can be recycled, plastic. 
+Calibrate - Align nozzles to paper. Lines should be crisp and colors should not overlap. Printer will have a option for this, can be started on the screen. It'll print out a page that you can use to calibrate further. 
+Clear jams - Lots of twists and turns, so a jam will happen. Remove the paper tray, remove any loose paper. Then try to remove the paper from the path, with firm pressure, don't rip. Some printers may let you release tension in the paper path to make this easier. After removing, check that none of it is ripped. Then, you'll have to hunt scraps inside lol. 
+
+Thermal - Heats a specially coated white paper, and the places heated turns black. No ink or toner, just heat. Quiet, almost silent. Don't use for archives
+Feed assembly - Pull paper through the printer, a relatively small paper path. It's a cylindrical container, holds the paper in place. Gears turn the cylinder and feed it through the printer. 
+Heating element - Full length heating element. No moving print head, the paper moves past the heating element. Parts of the element are heated and not to create the words. 
+Special thermal paper - Thermochromic paper, thermal paper. Paper covered in a chemical. Cash registers, credit card terminal, etc. Looks like paper, but feels different. 
+Thermal printer maintenance 
+Replace paper - inexpensive, but need the exact type of paper. Different sizes, configurations, etc. Keep documentation. Remove the old spool, put in new spool, youre done. 
+Clean heating element - IPA to clean it, or cleaning pens that you can rub on it. Cleaning cards  will clean the heads and the paper path. Check manufacturers recommendations. Swab it gently, it's a small area. 
+Remove debris - Paper bits and dust, no toner. Only a small amount. Blow out the printer with something. Or damp cloth on the inside. No vacuums unless it's designed for electronics. 
+Heat sensitivity of paper - a downside to these printers. Don't leave it out in the sun or in a heat source, could turn completely black. Also, clear tape on the paper will turn the "ink" back to white. 
+	
+Impact - Dot matrix printer. Print head has a matrix of pins that are pressed against a ribbon to mark a paper. Pins can be seen on output, like pixels. Good for multiple copies, carbon copies. Low cost per page, cause you only need the ink in the ribbon. Very noisy. And the graphics resolution is trash. 
+Print head - Moves back and forth across the paper, hitting the ribbon. The print head is held in a thing thats mostly a heat sink. The head itself is actually kinda small. 
+Ribbon - one long ribbon, never ending cycle. Made of fabric. Easy to replace, just one ribbon to replace. These are proprietary, specific to printer model
+Tractor feed - Continuous paper feed, perforations between pages. The holes on the sides of the paper are used to pull the paper through. This allows better control than friction feeds. The holes must line up perfectly. You can remove the holes on the sides, its perforated. 	
+Impact paper - One very long folded piece of paper with holes. Green bar paper is mainframe paper, but works on any dot matrix too. 
+impact printer maintenance
+Replace ribbon - single ribbon, one long circle, self contained. Replace when the output is too light. Cartridges are designed to be modular so you can quickly replace them. 
+Replace print head - Takes a lot of abuse, eventually needs to be replaced. Also gets hot, so be careful. Also modular, look for lever or bar to release it. Usually replace the ribbon at the same time so you can get the best output. 
+Replace paper - Not easy, cause the holes. Not just loose paper, it's tractor feed. 
+
+3D printer - create 3D model based on electronic model. "additive manufacturing" since you're building layer after layer. No machining, you're not grinding down a piece of metal or stone. You're starting from nothing and adding the shape. Rapid prototyping, relatively quick and cheap. You can quickly create objects using design files.  
+Filament - FDM (Fused deposition modeling) AKA filament printing. Melts filament and places it in thin layers. Print a layer, move up, print layer, repeat. Most common, good all around, larger print bed, easy to manage the filament, minimum mess, fewer disposal issues. 
+Resin - SLA (Stereolithography) 3D printing, AKA resin printer. Smooth and finely detailed 3D objects. The resin is hardened using a light source like UV or laser. The output hangs from a build platform, that gets lowered to the resin. The light hardens it to create a layer, and then the platform moves up a bit to get rid of excess, then back down to repeat. 
+Resin must be handled properly, protective gear. Disposal must be done at a hazardous material facility.  
+Print bed - a flat adhesive surface. Used for both printers. Foundation of a 3d print, needs to be level and clean, allows prints to stick to the bed. 
+	Filament - the entire bed is the print bed. Different options for sizing
+	Resin - print bed is the location that the resin is hardened with light. 

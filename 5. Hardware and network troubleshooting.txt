@@ -1,0 +1,152 @@
+5.1 Given a scenario, apply the best practice methodology to resolve problems. 
+Always consider corporate policies, procedures, and impacts before implementing a change.
+Change management, change control - Formal process for making changes, avoids downtime, confusion, mistakes. Might give an option to roll back to previous version if things go wrong. 
+1) Identify the problem
+	Gather information from the user, identify user changes, and if applicable, make backups before making changes. Also have a rollback method/plan/  As many details as possible, what is the user seeing, screenshots, error messages. Duplicate the problem if possible. Identify symptoms, could be multiple symptoms caused by multiple problems. Approach each symptom as a individial problem
+	Inquire regarding environmental or infrastructure changes. Patches, changes to apps, etc. Check OS log files, app logs.   
+2) Establish a theory of probable cause 
+	Start with the obvious: Occam's razor. But, consider everything, even not so obvious. Make a list of all possible cause. Test the easy theories first.
+	If necessary, conduct external or internal research based on symptoms
+3) Test the theory to determine the cause 	
+	Once the theory is confirmed, determine the next steps to resolve the problem
+	If the theory is not confirmed, re establish a new theory or escalate. Can bring in expert, or 3rd party. 
+4) Establish a plan of action to resolve the problem and implement the solution 
+	Build a plan that fixes the issue with minimum disruption. Refer to the vendor's instructions for guidance. Identify possible effects, every plan can go bad... so have a plan B and C. 
+	Implement the solution. Do it in a change control window, which allows for some time to be down. Escalate if needed, pull additional resources, bring in 3rd party, etc. 
+5) Verify full system functionality, and if possible implement preventative measures
+	You should have some tests in mind when you're in the planning stage. One that tests the environment, make sure its still working, and original problems was resolved. Have customers confirm it too.
+6) Document the findings, actions, and outcomes.
+	Build the valuable knowledge base. What actions were taken? What outcomes? Maybe use a formal database.
+
+5.2 Given a scenario, troubleshoot problems related to motherboards, CPU, RAM, and power. 
+Common symptoms:
+
+POST (Power on self test) - Test if major system parts are working before starting the OS. CPU, CMOS, video, memory, etc. Failures are noted with beeps and/or info on the screen. BIOS versions can differ so check documentation for interpretation. Different between manufacturers, just know what to do in the situation. 
+	Blank screen on boot - Listen for beeps. Could be bad video, bad RAM, bad CPU, BIOS configuration
+	BIOS time and setting - Replace the battery
+	Attempts to boot to incorrect drive - Check the boot order, confirm that the startup device has a valid OS
+	
+Proprietary crash screens like BSOD (Blue screen of death) or apple pinwheel
+BSOD - Windows Stop Error - Contains important information, look at event log to see this same informatioin after the screen is gone. Useful to track down problems, could be more useful to the manufacturer support team. 
+Could be bad hardware, drivers, or app. Use system restore, safe mode, last know good version, rollback driver. If there was new hardware installed, check the connectivity. Run hardware diagnostics provided by manufacturer or BIOS. 
+apple pinwheel - macOS X Spinning Wait Cursor - feedback that something is happening in the background, and you have to wait to regain control of the system. Sometimes it starts and never stops. At that point, you have to power down and power up. Could be an applicatiopn bug, bad hardware, slow paging information from memory to storage drive or back. There may be details in the console logs. 
+
+Black screen 
+Is the monitor connected? Check both power and signal cables. Check the input option on the monitor - HDMI, DVI, etc. Check brightness, could just be dim. Swap the monitor to see if the problem is the computer or monitor. If there no video after Windows loads, use VGA mode. Generic graphics mode that should work on every monitor on the market. Let's you isolate if the problem is drivers or with the monitor.
+
+No power - Could be no power at the outlet, so check that by switching plugs, multimeter, etc. 
+Could be the power supply, so check that everything is connected properly and all switchs are turned on, etc. Maybe it's partial, like fans spin but no other power. Well where is the fan connected? The POST might catch that there's a problem with the motherboard. Fans also much lower voltage requirements, so maybe you're only getting enough power for them. 
+
+Sluggish performance - Maybe a problem with a process or app on your system. 
+use task manager to look at CPU utilization for each process. Can also look at performance over time for all processes. Maybe there was a Windows Update, patches, drivers, etc. that uses more resources than expected. Check the disk space, defrag it. Some features slow performance, like throttling, power saving mode, etc. Anti virus or anti malware could be the reason sometimes. 
+
+Overheating - CPU, video cards, memory, all produce heat. Cooled with fans, airflow, heat sinks, etc. Keep all this clean and clear to keep it working right. Verify with monitoring system like HWMonitor to see the actual temperature in the computer. 
+
+Burning smell - Electrical problems. Disconnect power immediately. There's never supposed to be burning smell. Locate bad components, replace them, or maybe replace the whole motherboard. 
+
+Intermittent shutdown - no warning, black screen. Might have details in Event Viewer. Could be a heat related issue, like high CPU or graphics like in gaming. Check the fans and heat sinks, and airflow, etc. BIOS might have fan status and temperatures. Could even just be failing hardware. Anything change recently? Check device manager and run a diagnostic to narrow down problem. Sometimes, youll have to go all hardcore, eliminate what's working methodically. 
+
+Application crashes - Might have an error message or just disappears. Like "x has stopped working". Check the event log, reliability monitor (takes information from the event viewer and gives a graphical overview of the system. Gives a history of app problems. You could also try uninstalling and reinstalling the app. 
+
+Grinding noise - Never want to hear this. Could be loose components rattling. Could be coming from the harddrive, which is really bad. Clicking might be fan problems. A popping could be a blown capacitor. 
+
+Capacitor swelling 
+
+Lockups - System completely stops. Nothing in the event viewer either. Check for any activity at all, Hard drive, status lights, numlock button. Ctr aLT del. Look for recent changes in drivers, hardware. Check if resources are low. Hardware diagnostics could help if nothing works. 
+
+Continuous reboots - Document where the reboot is occuring. Any BIOS screen? Any part of the OS? Could be bad driver or configuration, so F8 and last know. Or safe mode. If so, go to settings, and disable autmatically. Could be bad hardware. 
+
+5.3 Given a scenario, troubleshoot and diagnose problems with storage drives and RAID arrays
+
+Storage failure - "cannot read from source disk". Could mean the drive has failed, or really slow performance. For example if you see a bunch of LED activity, or its retrying over and over.  Loid clicking noise "Click of death" , maybe with scraping and grinding too - drive is failing or already failed. 
+BACKUP - First step to any drive issue... a bad drive is really bad. 
+Check for loose or damaged cables, overheating (especially if problems after startup), check the power supply (maybe overloaded with new added devicese). Run hard drive diagnostics, from tje drive or computer manufacturer. Preferably on a known good computer. 
+Common symptoms:
+	LED status indicators 
+	Grinding noises
+	Clicking noices 
+
+Boot failure - Drive not recognized, Boot device not found. 
+	Lights or no lights, beeps, error messages. OS not found. Check the cables, check the boot sequence in BIOS. Check for removable disks like USB, and for disabled storage interfaces. For a new booting drive, check the data and power cables to make sure the drive has been installed properly. Then try different SATA interfaces to see if the problem is with a port. Try the drive in a different computer. 
+	
+Data loss/corruption - Drives WILL eventually fail. Repairs are difficult, expensive, not always successful. An SSD might just stop letting you write, allowing you to read, or just doesn't work. Data could be corrupter or unavailable, impossible to recover so... BACKUP!
+
+RAID failure - missing or faulty RAID controller. Or a single drive doesn't work and you need to replace or update that one. RAID manager will tell you all the drives in the system, what models they are, and status of their performances. Any error or failure would be noted there and tells you which drive to replace. 
+	Recovery - RAID 0: A single drive failure breaks the array and you have data loss. 
+	RAID 1: Array will keep working as long as one drive is operational. 
+	RAID 5: Need all drives operational but one. 
+	RAID 10: Can lose all but one of the drives from each set of mirrors. 
+
+SMART (Self monitoring, analysis, and reporting technology. 
+	Use 3rd party utilities or from drive manufacturer. Helps avoid hardware failure, look for warning signs. Some will do schedulued checks and give you updates on their performance. If one is failing, backup and replace ASAP. 
+	
+Extended read/write times
+	Memory access, communication across the bus, spinning drive access, writing or reading the data to different types of storage. Delays can be happening ANYWHERE along that path. So we need a way to measure how well the communication happens
+	IOPS (Input/output operations per second) - broad metric of maximum performance. Gives a standard across multiple drives and systems. 
+
+Missing drives in OS - OS boots normally, other drives are not shown. Check the BIOS. If not there, could be loose or missing cables, reseat the drive, drive has failed, etc. For external drives, make sure there is power to the drive and you're connecting to the device properly. If it is a network share, it mightve been connected during startup. So you may have to reconnect the drive or login to map the appropriate drive.
+
+5.4 Given a scenario, troubleshoot video, projector, and display issues
+Common symptoms:
+	No image - Check if connected. Power and signal cable. Also check the input selection. If monitor has failed, replace it to make sure. If this is happening after windows loads, use VGA mode (F8 during startup). Starts it in basic resolution thats compatible with almost everything. 
+	Image quality problems - Flickering or color problems, check for damage in the cables. For color, check each individual cable pin. 
+Distorted geometry or image, check the OS refresh rate, resolution settings, make sure they match the cables. Also try disabling hardware acceleration.
+	Incorrect data source - Check the input selection and make sure it's right. HDMI, VGA, DVI, etc. 
+	Physical cabling issues - Check the cable pins. Particulary if color is affected. 
+	Native resolution - LCD displays have fixed number of pixels. So display settings should always match the native resolution. Or it'll be a little distorted. Other than native resolution, you can try a multiple of it, like 2560 X 1600
+	Burned out bulb
+	fuzzy image
+	Display burn in - Problem for all monitor types. An image is displayed on the screen for so long, some of the image stays. Some displays will pixel shift, which is when it moves over by a tiny amount to prevent burn in. 
+		For LCDs, this is called "image sticking". Display a white screen for some time to try to clear it
+	Dead pixels - Always black, this is a manufacturing defect. Try cleaning the monitor screen with a damp cloth, other than that... you'll have to replace it 
+	Flashing screen - Check the cables, this is like a loose cable. Or, it could be the monitor, and youd have to just swap it 
+	Incorrect color display - Check the color settings like tint, factory reset, custom settings. Mext look at Ethereum. 
+	Audio issues - Many monitors have speakers, this may be low sound or quiet. Check the monitor volume/mute. Make sure the audio input is correct
+	Dim image - Check the brightness or contrast settings. But also, the OS might be dimming it for time, battery, etc.  
+	Intermittent projector shutdown - The light in these things are hella expensive... So eleaving it running and plugged in to cool slower.
+	Intermittent projector shutdown - No ligth output, but maybe fans on. This is a cooling issue, so check airflow, thermal contact, etc 
+
+5.5 Given a scenario, troubleshoot common issues with mobile devices
+Common symptoms:
+	Poor battery health 
+	Swollen battery
+	Broken screen
+	Improper charging
+	low/no connectivity
+	Liquid damage
+	Overheating
+	Digitizer issues
+	Physically damaged ports
+	Malware
+	Cursor drift/touch calibration
+
+5.6 Given a scenario, troubleshoot and resolve printer issues
+Common symptoms:
+	Lines down the printed pages
+	Garbled print
+	Toner not fusing to paper
+	Paper jams
+	Faded print
+	Incorrect paper size
+	Paper not feeding
+	Multipage misfeed
+	Multiple prints pending in queue
+	Specklink on printed pages
+	Double/echo images on the print
+	Incorrect color
+	Grinding noise
+	Finishing issues
+		Stable jam
+		Hole punch
+	Incorrect page orientation
+
+5.7 Given a scenario, troubleshoot problems with wired and wireless networks. 
+Common symptoms:
+	Intermittent wireless connectivity
+	Slow network sppeds
+	Limited connectivity
+	Jitter
+	Poor VOIP quality
+	Port flapping
+	High latency
+	External interference

@@ -1,0 +1,202 @@
+2.1 Compare and contrast Transmission control protocol (TCP) and User Datagram Protocol (UDP) ports, protocols, and their purposes. 
+
+Suppose a client sends stuff to a host over the ethernet. Inside the ethernet package is an ethernet header, ethernet payload, ethernet trailer. Inside the ethernet payload is an IP header and an IP payload. In this example we'll say that inside the IP payload is a TCP header and a TCP payload. And then inside the TCP payload is some sort of data, let's say HTTP data. 
+
+Ports and protocols
+To ensure back and forth communication, the sender will have an ip address, protocol, and port number where the receiver can send responses. The receiver will have an IP address, protocol, and port number where the data is being sent. 
+	Non-ephemeral ports are permanant port numbers. 0 - 1023. This way, there's no confusion about where to send data to a server if it's a commonly used one.
+	Ephemeral ports are temporary, 1024 - 65535. These are selected in real time for a particular conversation, and afterwards it's forgotton. 
+TCP and UDP can be 0-65535, and they can even have the same port number for something, but they will be different ports. So TCP 80 is a different port from UDP 80. 
+	
+TCP/20, TCP/21 - File transfer protocol (FTP). 20 is active mode data, 21 is control. FTP transfers files between devices. Authenticates with username and password, sometimes you can just type in anything and gain access. It has full featured functionality, so you can list, add, delete, rename, other on files. 
+
+TCP/22 - Secure shell (SSH). Encrypted communication that looks and acts like Telnet.
+ 
+TCP/23 - Telecommunication network (Telnet). Login to device remotely like ssh but the communications are not encrypted. 
+
+TCP/25 - Simple Mail Transfer Protocol (SMTP). Moves email from server to server and between a server and device. Used to send mail, but receiving is done with IMAP or POP3
+
+UDP/53 - Domain name system (DNS). Converts website names to IP addresses. Super important, so there's usually multiple that are running. 
+
+UDP/67,UDP/68 - Dynamic Host Configuration Protocol (DHCP). Automatically configures IP address, subnet mask, etc. The DHCP server is usually built into routers. The server will have a pool of IP addresses that are free at a given time. It'll assign one in real-time for a period of time before that system has to renew it's lease to keep using that address. You can also reserve addresses using the MAC address of a device. Also lets you manage all those addresses from one location. 
+
+TCP/80 - Hypertext Transfer Protocol (HTTP). Used by browsers to communicate with web servers. 80 is in the clear (unencrypted)
+
+TCP/110 - Post Office Protocol 3 (POP3). Wasn't built for multiple email clients, has basic email transfer functionality. 
+
+UDP/137, TCP/139 - Network Basic Input/Output System (NetBIOS)/NetBIOS over TCP/IP (NetBT). Used by SMB to communicate to older systems. UDP/137 is NetBIOS name services (nbname) which lets you find devices on the network by name, while TCP/139 is NetBIOS session service (nbsession) and does the actual communication. 
+
+TCP/143 - Internet Mail Access Protocol (IMAP). Let's you manage multiple email clients. 
+
+UDP/161, UDP/162 - Simple Network Management Protocol (SNMP). Gathers data from network devices. 161 to query devices, 162 to set traps. Basically a threshold above which it'll send a notification. V1 was the original, had structured tables, and was in the clear. V2 has bulk transfers, but still in the clear. V3 has encryption, authentication, message integrity. 
+
+TCP/389 - Lightweight Directory Access Protocol (LDAP). Stores and gets information from network directory. Used in Microsoft Active Directory. 
+
+TCP/443 - Hypertext Transfer Protocol Secure (HTTPS). This one is encrypted. 
+
+TCP/445 - Server Message Block (SMB)/Common Internet File System (CIFS). Used by windows to share files and send print jobs. This port allows a direct SMB communication without NetBIOS. 
+
+TCP/3389 - Remote Desktop Protocol (RDP). Share desktop from remote location. Connect to entire system or single app. 
+
+TCP vs UDP - Both are protocols for transfering data encapsulated in IP. They operate at the transport layer of the OSI model, aka OSI layer 4. Both have multiplexing so you can communicate from multiple applications at the same time. A port number with the data will let the receiver know which application that data is headed to. 
+
+	TCP is connection oriented, which means there is a formal connection setup and close. It also has reliable delivery because it can recover from errors and manage out of order messages, and retransmissions. It also has flow control, so the receiver can manage how much data is sent. 
+
+	UDP is connectionless, so there is no formal open and close process. It's "unreliable" delivery since it can't manage errors, can't handle out of order messages, and doesn't have a way to handle retransmissions. No flow control, so the sender decides how much data is sent
+
+	Connectionless: DHCP, Trivial File Tranfer Protocol (TFTP). UDP is useful for real time communication. You can't stop and resend data. Data might not get through, and the application has to keep track of that and decide what to do.
+ 
+	Connection oriented: HTTPS, SSH. These receive a "return receipt" showing that the data was received. If a data packet was lost, TCP will see that and send it again. Application doesn't have to worry about anything, the protocol handles all this automatically. 
+
+2.2 Compare and contrast common networking hardware
+Routers - decides where to forward incoming traffic based on IP address. Layer 3 device since it operates at OSI level 3. A router configured inside a switch is a Layer 3 switch or a multilayer switch. Can connect ip subnets of the same or different topology. 
+Switches - Make forwarding decisions based off MAC address. High speeds cause the bridging is done in hardware: switches have ASIC(Application specific integrated circuits)
+	Managed - Has VLAN support, so you can set certain interfaces to be on different IP subnets. Traffic prioritization configuration. Redundancy support, like with STP (Spanning tree protocol). STP prevents loops when an org has multiple switches connected to a network. Port mirroring, lets you copy traffic from one port to another, usually for analysis. External management, like with SNMP.  
+	Unmanaged - Few configuration options, it's plug and play. No VLANs, so all devices on an unmanaged switch are on the same VLAN. No management protocols like SNMP. But cheap. 
+Access Points - Not a router, only connects the wired and wireless networks. Also called bridges, cause they're extending the wired network onto the wireless one. No network address translations, no subnets, forwards based on MAC address.  
+Patch Panel - Cables from every desk go to a wiring closet, with one of these. All those cables are connected to the panel. Management is then done at the panel instead of rewiring the computers. The other side of the panel may have something like RJ45 that connects to a switch. Cable from desk to closet is permanent. No special tools needed either, just replug it. 
+Firewall - Filter traffic by port number, sometimes application. This is OSI layer 4 (TCP/UDP) or layer 7 (application). Can encrypt traffic into and out of the network. Can also act as a proxy. So it intercepts the traffic, checks to see if its harmful, before sending it to you. Can act as a layer 3 device, or router. Firewall usually connects directly to internet. 
+Power over Ethernet (PoE) - power provided through an ethernet cable. One wire for electricity and network. Access points, camera, difficult to power areas. Power usually comes from the switch, called an endspan. 
+	Injectors - If a switch doesn't have poe, an in line power injector adds power to the line in between the switch and the device. This is midspan. 
+	Switch - Switch will usually indicate if it has poe.
+	PoE Standards - Depends on what switch you're using. 
+		PoE: IEEE 802.3af-2003 was the original, now part of 802.3. 15.4 watts DC with 350 mA max current. 
+		PoE+: IEEE 802.3at-2009 also part of 802.3, does 25.5 watts DC at 600 mA
+		PoE++: IEEE 802.3bt-2018, designed for 10GB internet. 
+			Type 3 - 51W at 600mA
+			Type 4 - 71.3W at 960mA
+Hub - multi port repeater. Traffic going in one port is repeated to all others. Half-duplex. Less efficient as traffic increases. 10mb/100mb speeds, cause they old. 
+Cable modem - Communicate over broadband with copper cables, called so because there're multiple frequencies in a single wire. So you can have different types of traffic types, TV, voice, etc. 
+	DOCSIS (Data over cable service interface specification) - standard for sending data over these cables. Speeds up to 1GB/s. 
+Digital Subscriber Line (DSL) - Over phone cables. Technically ADSL (Asymmetric) since download speed is greater than upload speed. 10,000 ft limit from central office (CO) , 52Mbit down 16Mbit up, faster speeds if closer to CO. 
+Optical Network Terminal (ONT) - Connects ISP the fiber network to a copper one. 
+	Demarcation point (demarc) - The ONT is at the vertex of the ISP's network to your internal one. This point is a demarc. Line of responsibility, one side of the box is the ISP the other is you. 
+Network Interface Card (NIC) - The core network device. Every device on a network has one. Specific to the network type, different card for ethernet, WAN, wireless. Can be builtinto motherboard or added as expansion card. 
+
+Software defined Networking (SDN) - Cloud computing can't use hardware. So SDN takes each devices, breaks its functionality into separate logical units, make a software version of that. 3 layers they can operate on. 
+	1. Infrastructure layer / data plane - Processes the network packets and frames, so it does forwarding, trunking, encrypting, NAT. 
+	2. Control layer / control plane - Has the references that data plane needs. Routing tables, session tables, NAT tables, dynamic routing protocol updates, it manages the actions of the data plane. 
+	3. Application layer / management plane - Access and manage the device, so login, SSH, API, etc. 
+	Data can flow only between the same layers of 2 devices. 
+
+2.3 Compare and contrast protocols for wireless networking
+Channels - groups of frequencies numbered by IEEE. Ideally non overlapping. 
+	Regulations - Usually a govt. will control the spectrum, power, interference, etc. 
+	2.4 vs 5 GHz 
+Bluetooth - Uses 2.4 GHz, the Unlicensed ISM band (Industrual, scientific, and medical). Short range, PAN (Personal area network). Industrial bluetooth can be up to 100m. 
+802.11 - WiFi
+	a - One of the first. 5 GHz, others with special licenses. 54 Mbit/s. Smaller range, since higher frequencies get absorbed easier by objects on the way. Not common today.  
+	b - Same time as a. 2.4 GHz, 11 Mbit/s. Better range than a. More frequency conflict, since other devices operated in the same range of frequencies. Not common today. 
+	g - Upgrade to b. 2.4 GHz, but 54 Mbit/s. Backwards compatible with b. Still frequency conflicts. 
+	n - AKA Wi-Fi 4, update to a,b,g. 2.4 GHz and/or 5GHz. Bandwidth upgraded to 40MHz per channel. 600 Mbit/s max in theory using 40MHz mode and 5 antennas. 4 MIMO - Multiple input multiple output, new form of communication. So there are multiple transfer and receice antennas. 
+	ac - (Wifi 5) update to n,(4). Only 5GHz. Bandwidth increases to 160 MHz per channel. More channel bonding. Denser signal modulation so faster data transfer. Introduced MU (Multiple user) MIMO, 8 of those streams. Almost 7GBit/s. Might see an ac access point with 5 and 2.4 GHz. Everything on 5 goes to wifi 5, everything else is done with n. 
+	ax - (WiFi 6) - update to wifi 5. 5 and/or 2.4 GHz. Different channel widths, 20, 40, 80, 160MHz. 1.2 GBit/s per channel. 8 bi directional MU-MIMO streams. Uses OFDMA (Orthogonal frequency-division multiple access, which communicates similarly to cellular networks and improves coverage in dense areas. About 9.6 Gbit/s. 
+
+Long range fixed wireless - The WAP at home is 40 to 50 meters. For interbuilding connection over miles, you use fixed directional antennas with increased signal strength. Less interference since it's outside. Indoors signals gets bounced and absorbed. 
+	Licensed - Needs permission/license etc. Less traffic, other advantages. 
+	unlicensed - The normal frequencies like 2.4 and 5. Busier but easy to access. 
+	power - There's also rules around how much of a signal can be sent, different for inside and outside signals. w
+	regulatory requirements for wireless power
+NFC (Near field communication) - based on RFID, but this is 2 way. POS, bluetooth pairing, access token. 
+RFID (Radio frequency identification - used for authentication, id, tracking, etc. No battery or power in the tag needed, cause induction yol. Other tags can be powered, known as active rfid.
+
+2.4 Summarize services provided by network hosts 
+Server roles
+	DNS - Domain name system converts names to IP addresses and back. It's a distributed naming system, so you're gonna have multiple DNS servers internally and externally. Managed by an ISP or your company's IT 
+	DHCP - Dynamic host configuration protocol automatically sets an address to devices on a server. Super common, everytime you connect to a network you're using one. Enterprises will have multiple running. 
+	fileshare - Central storage of documents, pictures, videos, etc. It'll have a standardized system of managemnt, like SMB for windowns or AFP for apple. Of course the front end hides all this stuff, instead of protocols it shows functions. 
+	Print server - Allows a printer to join a network. Could be built into the printer. You can also use software on a connected computer, and then send print jobs to that computer. Standard protocols: SMB, IPP, LPD. 
+	Mail servers - sending and receiving mail. Managed by ISP or IT department. One of the most important services, good to have 24/7 hour support. 
+	Syslog - a standard for logging messages. Consolidate logs from different apps and computers into a central database. Need a lot of storage. 
+		SIEM (Security information and event manager) - collects log files
+	Web servers - Respond to browser requests. Uses HTTP/HTTPS, pages made with HTML/HTML5. Web pages are stored on the server and then built in the browser. Can be static pages or dynamic. 
+	AAA (Authentication, authorization, accounting) - centralizes login credentials to a server. Usually only for enterprise. Usually a redundant server because of it's importance. 
+Internet appliances
+	Spam gateways - Unsolicited messages from emails, forums, and puts them in a folder. Could be ads, scams, etc. These gateways stop the email before it reaches the user and screens them. Could be a cloud gateway or on-site. 
+	UTM (Unified threat management) - AKA Web security gateway AKA Next-generation firewall. All in one security device. URL filtering, content inspection, malware inspection, spam filter, CSU/DSU, router, switch, firewall, IDS/IPS, bandwidth shaper, VPN endpoint.
+	Load balancers - Distribute the load over multiple servers. If one server becomes unresponsive, it removes it from the load. So server outages have no effect. Since these sit in the middle of all the servers, it can make changes to protocols. It can offload TCP, SSL (encrypt/decrypt). Caching - You have store info in the balancer so requests don't have to go any further. Prioritization of some servers over others. Or send certain apps to certain servers. 
+	Proxy servers - Intermediate server. CLient makes request to proxy, proxy performs the request, sends it to client. Can have features like access control, caching, URL filtering, content scanning, etc. 
+Legacy/embedded systems - Legacy is an old system with important stuff on it. Too hard to replace it so you'll just have to learn the legacy system. Embedded systems are purpose built, so you don't have access to the OS, just the function. For example an alarm system, timecard, etc. 
+	SCADA - Supervisory control and data acquisition AKA ICS (Industrial control system). Control and manage industrial machines. Let's you see what's happening on the devices and control them. Segmented from the rest of the network because it's important. You need rights, permissions, etc. to access it. 
+IoT devices - Internet of things. Appliances, smart devices, air control, access control, etc. Might be segmented as well. 
+
+2.5 Given a scenario, install and configure basic wired/wireless small office/home office (SOHO) networks. 
+Internet protocol (IP) addressing
+IPv4 - main protocol for almost everything. 4 numbers separated by periods, max value of each number is 255, since each number has 8 bits. 8 bits = 1 byte = 1 octet. Every device needs a unique one. Also need a subnet mask, assigned by network administrator. The local device can use this to find out what subnet its a part of. Both numbers given at the same time usually. If the device communicates outside the local subnet, you need a default gateway. This is the IP address of a router that allows outside communication. 
+
+IPv6 - newer protocol and most OS's will support this as well. Has 128 bit addresses, adds an insane amount of addresses. 8, 16 bit numbers separated by colons, and each number is in hexadecimal. First 64 bits is the network prefix, last 64 is the host network address. DNS will be important, since these addresses are harder to memorize. 
+
+IP Addressing - Used to be manual configuration, but larger networks caused problems. 
+	BOOTP - Bootstrap protocol made some of it automatic, but not all. And, it couldn't tell when an address became available. Enter DHCP. 
+		
+2.6 Compare and contrast common networking configuration concepts 
+
+DHCP - Dynamic host configuration protocol provides automatic IP configuration from a pool that was configured previously. You can configure the IP address range, excluded addresses, Subnet mask, lease durations, DNS server, default gateway, VOIP servers. This can just be embedded into a router. 
+	DORA - 4 step process. Discover, offer, request, acknowledge
+		Discover - the device tries to locate the DHCP server that's on it's network. 
+		Offer - The server offers an address to the device
+		Request - Device/user looks at the address options and selects one. 
+		Acknowledge - The server acknowledges your choice, and sets all the IP configurations needed for that address. 
+	APIPA (Automatic private IP addressing) - a link local address. If there is no available DHCP server when a device is connected, it is given an APIPA address. These can only communicate on the local network. The reserved range of addresses for this is 169.254.0.0 to 169.254.255.255. But first 256 and last 256 of this range are reserved, leaving a range of 169.254.1.0 to 169.254.254.255
+	ARP (Address resolution protocol) - checks if the APIPA address is being used by another device already. 
+	Static - If you don't want the address to change everytime you connect, you can disable DHCP for that device and enter the details manually. Or you can configure an IP reservation, so that a specific MAC address is always associated with a particular IP address. 
+	Dynamic - Usually pools the first available address from a pool of addresses. This changes each time you configure an address. The address is returned when the lease is up. Automatic assignment is the same, but it remembers your last address and gives you the same one. 
+	Gateway - a device is hardware that connects two networks. A router is a type of gateway. These protect the nodes of the network while being nodes themselves, the "edge" node. Other gateways are firewalls, proxy servers.  
+
+	Scope - Large contiguous pool of IP addresses. You can add reservations and leases as well. Reserevation being when a MAC address is assigned an IP address, lease being the borrowing of an address by a device under normal operation. 
+	Reallocation - when the device is powered off or leaves the network and comes back, the server continues the lease
+	Renewal - halfway through the lease, the T1 timer checks into the DHCP server to renew the lease. Timer resets to the lease length. If the T1 timer doesn't reset the timer, once the time reaches 87.5% T2 tries to check into any DHCP server on the network.  
+
+DNS (Domain name system) - Translates IP address to readable address. Distributed database, so many DNS servers. gTLD (general Top level domain) are things like .com, .net, etc. ccTLD (country level) is .us, .uk, etc. It's hierarchical. Starts with the end, first thing is TLD followed by the name of the website. And then if the website has multiple servers, etc. 
+The DNS database has RR (resource records) with domain name and IP address, etc. 30 different types. 
+	Address - Defines IP address of a host
+	A - for IPv4
+	AAAA - for IPv6 
+	MX (Mail exchanger recored) - Determines host name for mail server. Not the IP address, just the host name. For IP, check the A files. 
+	TXT (Text) - human readable text information. Can be used for verification. Can be used for email security 
+
+Spam management
+	SPF (Sender policy framework) record - list of all email servers that can send mail in this domain. Prevents spoofing. Checks if incoming mail came from an authorized host 
+	DKIM (Domain keys identified mail) - Digitally sign a domain's outgoing mail. Validated by servers, not users. This is a TXT record. 
+	DMARC (Domain based message authentication, reporting, and conformance) - Prevents unauthorized email use (spoofing). Decides what external email servers should do with mail that doesn't validate through SPF or DKIM. A TXT record. Compliance reports can be sent to email admin. 
+
+	
+VLAN - Virtual local area network. Imagine you have 2 switches with a network each. The LAN is the group of devices in the same broadcast network. So we have 2 LANs, one for each switch here. Alternatively, you can get 1 switch and plug both networks in. The separation in the networks is done in logic. This is a VLAN. 
+
+VPN - Virtual private network - encrypted private data traversing the public network. Could be VPN software, could be hardware. Modern OS's will come with a VPN. 
+	Concentrator - the encryption decryption access device. This can be standalone or built into firewall or something. 
+	Client to site - you can connect securely to a network from far away because of an encrypted tunnel. 
+
+2.7 Compare and contrast internet connection types, network types, and their features.
+Internet connection types
+	Satellite - a "Non-terrestrial" communication. Expensive compared to terrestrial networking. Speeds from 50 Mb/s down and 3 up. Used for remote or difficult to network sites. 250 ms up and down of latency, which is a problem. Starlink apparantly 40ms. High frequency, 2 GHz, so line of sight matters and you'll get rain fade (clouds). 
+	Fiber - High speed fiber optic cables. Installation is more expensive than copper and so is repair. Longer distance. Very high data rates. 
+	Cable - Broadband, meaning transmission of different data types over multiple frequencies. Same cable as for cable TV. DOCSIS - standard for sending data on cable. High speed, 50 Mbit - 1 GB / s. Data, voice, video, all on same cable. 
+	DSL - technincally ADSL, (Asymmetric digital subscriber line) uses existing telephone lines to provide network. Asymmetric because download is faster than upload. 200 Mbit vs 20 for down vs up. CO (central office) range matters. 
+	Cellular - Mobile network sends data. Can tether and hotspot.
+	WISP (Wireless internet service provider) - Not to space, but to local ground stations. Usually in rural or remote areas. Meshed 802.11, 5G, proprietary wireless - many different deployment techs. Needs outdoor antenna to communicate with WISP. Up to 1GB/s. 
+
+Network types
+	LAN (Local area network) - 1 or a group of buildings. Local results in high connectivity over ethernet and 802.11. If it's slow, you may not be on a LAN. 
+	WAN (Wide area network) - Spanning the globe. Usually connects LANs over a distance, and it's lower speeds. Could be point to point serial connection, MPLS, etc. Could be fiber, non-terrestrial, etc. 
+	PAN (Personal area network) - your own private network, like bluetooth, IR, NFC. Cars, phone accessories, etc. 
+	MAN (Metropolitan area network) - network in the city, larger than LAN but smaller than WAN. Usually in the same city, used to have different topologies but today it's usually Metro Ethernet. Connection on both sides, ISP is the link between the two. Usually owned by government. 
+	SAN (Storage area network) - Like a local storage drive with large storage and block level access. Efficient at reading and writing, but requires a lot of bandwidth. Might be isolated on their own network. 
+	WLAN (Wireless LAN) - 802.11. Not a huge range but you can extend the range with APs. 
+
+2.8 Given a scenario, use networking tools 
+Crimper - pinches the connector onto the wire. Types can be coaxial, twisted pair, fiber, etc. Usually the final step, cable has been run and cable on both sides need a connector. Twisted pair cables, the crimpers are pushing prongs into the copper wire through the insulation. Get a good crimper, cable snips, wire stripper. Use correct modular connectors for each cable, cause cables have categories. 
+
+Cable stripper - yah takes the insulation off a cable to show the copper inside
+
+Wi-Fi analyzer - wireless networks are easy to monitor. This helps you understand the signals that are on the wireless network. Could be software on a device or hardware. You can find errors, interference, useful for areas with lots of APs. Also, antenna location. 
+
+Toner probe - Find which cable in a bunch. You connect the tone generator on one side could be with a modular jack, punch down connectors, clips, etc., and it sends a signal down it. On the other side is an inductive probe that doesn't need to touch the copper, it just gets close and tells you where the tone is generated. Allows wire tracking. 
+
+Punchdown tool - punch a wire into a wirig block. 66 block, 110 block, etc. Each wire in the cable have to be individually punched! The tool is also trimming the wire during the punch to make it neat. Organization is key for this, use cable management. Maintain your twists - as long as you can, keep it twisted, right up to the punch down block. Document everything, use tags, graftitti, etc. 
+
+Cable tester - 2 different units on each side of cable. It can do a continuity test to see if the two points are connected. Some can tell you missing pins or crossed wires. Not used for frequency testing, or anything advanced like that. 
+ 
+Loopback plug - Testing physical ports. Data comes out, loops, and back into same port immediately. If the in and out don't match, the interface could be faulty. have them for ethernet, T1 WAN, fiber. Not cross over cables, multiple devices aren't connected. This connects to itself. 
+
+Network tap - intercepts network traffic. Send copy of data packet to packet capture device. A physical tap disconnects a link, place the tap in place. Passive doesn't require fiber, active requires power.  Also port mirrors, or SPAN (Switched port ANalyzer). builtinto switches usually and is software based. Not as much functionality but still useful. 

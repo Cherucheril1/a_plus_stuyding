@@ -1,0 +1,137 @@
+1. Mobile Devices
+
+1.1 Given a scenario, install and configure laptop hardware and components 
+
+Hardware/Device Replacement 
+	Battery - Usually lithium ion or lithium ion polymer. So you can charge them without
+	the memory effect. Each charge will diminish battery capacity, so you'll eventually 	replace it. Usually has a particular form factor for a given model. 
+
+	Keyboard/keys - Usually just one ribbon cable attaching it to the mother board. You can 
+	also connect an external keyboard. Especially since laptop keyboards are smaller and 	have less functions. The function keys will have secondary functions on them which are  	accessed by holding the Fn key while pressing one of the function keys. Keycaps and the 	mechanics under them can be very fragile
+
+	Random access memory(RAM) - A common form factor is the Small outline dual in-line 	memory module (SO-DIMM), these allow you to add more or swap modules. Other laptops will 
+	have memory soldered to the motherboard, so you can't change anything unless you replace 
+	the whole motherboard. 
+
+	Hard disk drive(HDD)/Solid state drive (SSD) replacement - Form factor of 2.5 in.  	compared to desktop drives at 3.5 in. HDD is a spinning disk, older, aka magnetic drive. 	SSD is newer, silent, faster, no moving parts, and all memory. usually same form factor 	as HDD 	so you can easily upgrade. Traditionally these were SATA drives, so they need 	SATA data and power cables. M.2 is a newer, smaller, faster, form factor but it requires 	an M.2 interface on the laptop. For SATA replacement, accessing it may require you to 	open the back of the laptop, or there may be a smaller window that you can use. Remove 	screws holding it down, unplug from the interface, remove the unit, place new unit, plug 	into the interface, screw it back down. For M.2, just a single screw, and the unit can 
+	just slide into and out of the interface. 
+
+	HDD/SSD migration - One method is to install an OS on the SSD, and then move over files 
+	and apps. Better way is to make a clone or image of the old drive and then move it to 	the new one. This also moves EVERYTHING rather than a few that you have to do manually. 
+	Software that generates the image and moves it can come with the drive, be third-party, 
+	open-source. Sometimes you create one image file and duplicate it to copy it into 	multiple systems at a time. You can also do a drive-to-drive image directly. But this 
+	requires either 2 drives running in the system or 2 computers running at the same time.
+  
+	Wireless cards - Newer laptops will have 802.11 and bluetooth built into the motherboard	Older ones could have mini PCI or mini PCI Express interfaces. Some laptops can even 		have the option to add a cellular internet connection. To install just slide it into the 	slot, push down, connect the antenna wires from the computer to the ports on the card.
+ 	
+Physical privacy and security components 
+	Biometrics - Uses face or fingerprint to verify identity. Requires hardware to view 
+	face or fingerprint. 
+
+	Near-field scanner features - Near field communication (NFC) lets you transfer data or 
+	perform authentication without physical contact between the 2 devices. You could for 
+	example use your phone to authenticate a laptop by using NFC. 
+
+1.2 Compare and contrast the display components of mobile devices. 
+Types
+	Liquid crystal display (LCD) - Display has a bunch of crystals that act as color 	filters, and there's a backlight behind it that shines throught to create an image.
+	Lightweight, low-power, cheap. True black is sacrificed, and backlight can be a pain to
+	fix. Light sources can be LED, fluorescent, other. 
+		In-plane switching (IPS) - Best color representation but more costly
+		Twisted nematic (TN) - Good response time but the viewing angles suck 
+		Vertical alignment (VA) - In between the two. Pretty good color, not as 			responsive as TN
+
+	Organic light emitting diode (OLED) - No backlight, the organic stuff lights up when a 
+	current passes through it. Thin and light. 
+
+Mobile display components 
+	Fluorescent backlight is aka Cold cathode fluorescent lamp (CCFL). Compared to LED, 	Bulkier, take more power, older. LED lights can be around the perimeter of the screen or 	in a matrix behind it. Shine a light at the screen, and if you can see data but it's 	just not being lit up, you may have a problem with the backlight. For CCFL, you might be 
+	able to fix it by just replacing the inverters. Sometimes you'll just have to replace 	the whole display
+WifI antenna connector/placement 
+	Usually in the top of the display since it's the highest point when the device is being 
+	used. When you replace displays, be sure to connect all the antennas. 
+Camera-webcam
+	Many laptops have one built-in. Capturing video, meetings.
+Microphone
+	Usually right next to the camera. 
+
+Touch screen/digitizer - What you push on the screen gets converted to digital signals , the 
+digitizer does this. It converts analog to digital. It might only allow stylus input, or touch
+screen. 
+
+Inverter - Component for CCFL that converts DC from the laptop into AC for the display. 
+
+1.3 Given a scenario, set up and configure accessories and ports of mobile devices
+Connection methods 
+	USB (Universal serial bus), USB-C, microUSB, miniUSB - High speed wired connection that 
+		can be used for charging and data transfer. The one on the side of a computer is 		Type A, while there's also micro B USB, and mini B USB. Mini-B is older than 			micro
+	USB-C - 24 pin and double sided USB connection. Used on both sides, host and device. As 		opposed to how type A is usually for the computer while B is for devices. Sends 		a variety of types of signals. USB 2, 3, 3.1, 4, DisplayPort, HDMI, Thunderbolt
+	Lightning - Proprietary Apple connector with 8 pins. Higher power output, simple design, 		double sided when compared to micro B. 
+	Serial interfaces - before USB the standard serial connector was DB-9 AKA DE-9, a 9 pin 			connector used for RS232 signals. May still be around for older network 			devices. 
+	NFC (Near Field Communication) - Send small amount of data wirelessly over short 			distance. Payment, information exchange, identification
+	Bluetooth - High speed connection over short distances. PAN(Personal area network) 			device
+	Hotspot - Turn phone into Wi-Fi hotspot, so you give access to your cellular data 
+	
+Accessories
+	Touch pen - Interact with the screen without your finger. Handwriting, drawing. More 			precise than fingers. 
+		Digital stylus - more advanced, more features. It communicates with the device 
+		without touching, detects pressure, has buttons, etc. Needs to be compatible. 
+		
+	Headsets - Hands free audio with earphone and microphone. Can be USB, 3.5mm TRRS, 		Analaog audio jack, lightning port, bluetooth, etc. 
+
+	Speakers - Mobile audio, usually battery powered. Wireless bluetooth connection. Better 	sound than the mobile device for sure. 
+
+	Webcam - Can be internal or external. 
+
+Docking station - Use external keyboard and mouse. And additionaly functionality can be added, so that when you bring the laptop home you just "dock" into the rest of the peripherals. Can even have desktop adapter cards. 
+
+Port replicator - Simpler version of docking station. Connected through USB, smaller, don't have adapter cards. 
+
+Trackpad/drawing pad 
+	Drawing pad - Active stylus with external digitizer. If you don't have 				touchscreen on the computer. 3rd party usually. 
+	Trackpad - Replaces mouse for laptops, good for tight space. Also external ones 	available. Might be able to customize how your's responds to certain gestures etc. Can 	be disabled on some laptops with a fn key. 
+
+1.4 Given a scenario, configure basic mobile-device network connectivity and application support. 
+Wireless/cellular data network (enable/disable): Called cellular because you divide the land into cells and place antenna at the corners. 
+	2G/3G/4G/5G: 
+		2G was the original, with 2 standards GSM and CDMA. Good for voice communication 		but bad at data
+		3G came in 1998, can send more data and faster than 2G. This added new 				capabilities to mobile devices, like GPS, mobile TV, video on demand, streaming 		audio/video. Speeds up to several Mbit/s
+		4G - LTE (Long term evolution) was a 4G standard that combined CDMA and GSM. 			Based on GSM and EDGE (Enhanced data rates for GSM Evolution) allowing for 			speeds up to 150 Mbit/s.
+			LTE-A (LTE Advanced) was an improved version with speeds up to 300Mbit/s
+		5G - 2020. Huge performance improvements, can use higher frequencies, can 			eventually hit 10 Gbit/s. Even the slower speeds are in the range of 100-900 			Mbit/s. Also significantly improved IoT (Internet of things) connectivity. Due 			to better bandwidth, better data transfer, better cloud functionality, faster 			monitoring and notifications. 
+	Hotspot - Turn your phone into wifi hotspot. So youre sharing your cellular data with 			devices connected to it over 802.11. 
+	Global System for mobile communications (GSM) vs code-division multiple access (CDMA):
+		GSM was 90% of the population and was originally an EU standard. Gave worldwide 		coverage, and it's used by AT&T and Verizon in the US. All your phone configs 			are on a SIM (Subscriber identity module) card and can be moved to a new phone. 		Used multiplexing to deal with multiple people talking at the same time on the 			same network. 
+		CDMA let's multiple people talk by using specific codes for each call. Mostly 			used in the US by Verizon and Sprint, and it controls what devices you can use. 
+	Preferred Roaming List (PRL) updates - PRL tells the phone where the towers are and 			which ones to connect to. Can be updated OTA (Over the air)
+Bluetooth - Connection process allows you to control what devices can connect, and has built in security using a pin or code. You pair it once and it should be good, afterwards it connects automatically. The following is a generic process, but you might have slightly different steps depending on the device. And discoverable mode can be a pain to find/use. 
+	Pairing process: 
+		Enable Bluetooth - on both devices. 
+		Enable pairing - or set the devices to discoverable mode. Let's the devices see 			each other. Might require a specific key combination to activate. 
+		Find a device for pairing - So select the correct device from the list of 				discovered devices.  
+		Enter the appropriate PIN code - If prompted, and it might also just ask you to 			verify that the device is showing a particular code. 
+		Test connectivity
+Location services
+	Global positioning system (GPS) services - GPS satellites originally made by US DoD. Currently over 30 in orbit. Uses 4 satellites to get precise location. It uses timing differences from the 4 satellites to get altitude, longitude, lattitude.
+	Cellular location services -  WiFi and Data can also be used to help pin down location. 
+
+Mobile device management(MDM)/Mobile application management (MAM):
+MDM allows centralized management both company owned and user owned mobile devices. 	Called BYOD(Bring your own device). Let's you set security, settings, remote control, enable/disable capabilities. In a user device, you can partition out the company data to protect it. That way, you can also delete company stuff without effecting the private stuff. Can also add access control with PIN etc. 
+	Corporate email configuration - User doesn't have to make the changes/updates. You can just make the changes and push them from the MDM console.
+ 
+	Two-factor authentication - Requires 2 separate id methods. You can also use MDM to require certain methods, or force biometrics, and push apps for authentication purposes.
+ 
+	Corporate applications - Control what apps are necessary/blocked on devices. 
+
+Mobile device synchronization - A lot of things on a new mobile device are already configured, like your phone number, texting settings, etc. But some things require additionaly steps, like email, Data sync, etc. Different companies will have different ways to handle email, but usually there's some sort of corporate email account you give to users. Data sync is needed for backups, recovery, sharing data between devices you use. 
+	Account setup
+		Microsoft 365 - cloud based service that lets you sync mail, contacts, notes, reminders, calendar, etc. Authentication is just username and password. 
+		Google workspace - Same process as above. 
+		iCloud - integrated into iOS and iPadOS. Authentication is just iCloud email and password, and there's extensive sync configurations. 
+	Data to synchronize 
+		Mail
+		Photos - pictures, music, videos
+		Calendar
+		Contacts
+		Recognizing data caps: allow cellular vs wifi, control how much data is used, etc. to manage costs of data transfer. 
+
