@@ -1,0 +1,15 @@
+1.1 Identify basic features of Microsoft Windows editions
+Windows 10 editions
+	Home
+	Pro
+	Pro for Workstations
+	Enterprise
+Feature differences
+	Domain access vs. workgroup
+	Desktop styles/user interface
+	Availability of Remote Desktop Protocol (RDP)
+	Random-access memory(RAM) support limitations
+	BitLocker
+	gpedit.msc 
+Upgrade paths 
+	In-place upgrade
