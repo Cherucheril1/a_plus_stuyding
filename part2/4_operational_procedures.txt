@@ -1,0 +1,261 @@
+4.1 Given a scenario, implement best practices associated with documentation and support systems 
+information management 
+	Ticketing systems 
+		User information
+			Name, usually integrated into Active Directory etc 
+			Can be automatic, if issues arrive through portal, gateway, etc. 
+			Confirm contact information
+		Device information 
+		Description of problems
+			clear and concise 
+			One of the most important - decides next step, who gets assigned it, etc. 
+		Categories
+			Password issues, change request, etc. Broad descriptions 
+		Severity 
+			Established set of standards - low, medium, critical, etc. 
+		Escalation levels
+			Escalate to new tier or a specific group 
+		Clear, concise written communication 
+			Problem description 
+			Progress notes
+				Many people may be working on a single ticket 
+				Document any changes, addition information, concise progress, etc. 
+			Problem resolution
+				Document the solution, may be referenced later 
+	Asset management - record of every asset 
+		Inventory lists - central asset tracking system 
+		Database system
+		Asset tags and IDs
+		Procurement life cycle - purchasing policy 
+			Starts with request, inluding budgeting information and approvals 
+			Negotiate with supplies, terms and conditions 
+			Purchase, invoice, and payment 
+		Warranty and licensing - Different process if out of warranty 
+			Software costs, ongoing renewal deadlines, etc 
+		Assigned users - associate a person with an asset
+	Types of documents 
+		AUP (Acceptable use policy) - detailed documentation. May be part of rules of behaviour 
+			Internet use, telephones, computers, mobile devices 
+			Used to limit legal liability of organization 
+		Network topology diagram - describes network layout 
+			Could be a logical diagram 
+			Could show physical rack locations 
+		Regulatory compliance requirements 
+			Catalog of rules across many aspects of business or life 
+			Could be industry specific or situational 
+			Penalties - fines, loss of employement, jail 
+			Scope - domestic vs international 
+			Splash screens - message, logo, graphic shown on startup or login 
+				Can be informational, can be used for branding 
+				Could be a legal or adminstrative message about how to rely data, etc. 
+		Incident reports
+			Security policy 
+			Ongoing incidents, reports, documentation 
+		SOPs 
+			Procedures for custom installation of software package 
+				Testing and change control 
+			Documentation is key, everyone can read and review 
+		New user setup checklist (on boarding) 
+			IT agreements, could be part of employee handbook or AUP 
+			Create accounts and groups 
+			Provide required hardware, configured 
+		End user termination checklist (off boarding)
+			Should be predefined 
+			What happens to hardware? data? 
+			Deactivate account information 
+	Knowledge base/articles 
+		External sources - manifacturer, developer, internet community
+		internal documentation - institutional knowledge. Could be part of help desk software 
+		Find solution quickly, search database 
+		
+4.2 Explain basic change-management best practices
+		Change management is a most common risk, often overlooked 
+		Have clear policies. Could be difficult to start implementing one 
+	Documented business processes
+		Rollback plan - Go back to previous configuration, revert your changes 
+			Not that easy, some changes are involved 
+			Always have backups 
+		Sandbox texting - isolated testing environment 
+			No impact on rest of organization, technological safe space 
+			Use before making a change to production. Test and confirm before deployment 
+			Confirm rollback plan 
+		Responsible staff member 
+			IT team implements change
+			Business customer is the user of the technology, that wants the change 
+			Organization sponser is responsible financially, to pay or profit 
+	Change management - formal process for managing change to avoid problems 
+		Request forms - could be online
+			Easy to manage, nothing is missed, create detailed reports
+			Transparent process, many groups are involved 
+		Purpose of the change 
+			Application upgrades, new features, bug fixes, performance enhancement, security 
+			Changes are costly, should be a good reason 
+		Scope of the change - limited to single server or entire site? etc. 
+		Data and time of the change - could be a few minutes, or hours. Impact on business 
+		Affected systems/impact 
+		risk analysis 
+			risk level for changing, or NOT changing 
+		change board approvals - last step, actual work next 
+		End user acceptance - was it successful? 
+			Ideally just a formality - they should be involved the whole time 
+4.3 Given a scenario, implement workstation backup and recovery methods 
+	Backup and recovery 
+		Full - backup everything, all OS and user files 
+			Longest backup process, might be impractical every day. Lots of space needed 
+		Incremental - full backup taken first, next backup contains changes 
+			But the next one is only the changes since the last one
+			Restoration needs full backup and all the incremental backups 
+		Differential - Full backup taken first, next backups only have changes 
+			Grows larger as data is changed, it "integrals" the changes 
+			Restoration needs full backup and last differential 
+		Synthetic - create a full backup without actually performing a full backup 
+			First full backup copies every file 
+			Subsequent incremental backups are added altogether into a synthetic full backup 
+			Advantage of full backup, efficiency of incremental backup 
+			So synthetic comes from other backups, not a "real" full backup process 
+	Backup testing - make sure it can be restored 
+		Simulate a disaster situation and restore from backup 
+		Confirm the restoration
+		Frequency - ongoing basis - weekly, monthly, quarterly 
+	Backup rotation schemes
+		On site vs off site 
+			On site - no internet link required, data is immediately available. Less expensive 
+			off site - transfer data over internet or WAN. Data is available after disaster, restoration 
+				from anywhere 
+			Organizations use both - more copies, more options 
+		GFS (Grandfather-father-son) - 3 backup rotations 
+			Monthly, weekly, daily 
+			12 monthly full backups (grandfather)
+			4/5 weekly full backups (father) 
+			31 daily backups (son)
+		3-2-1 backup rule 
+			3 copies always available - 1 primary and 2 backups 
+			2 different types of media - local drive, tape, NAS, etc. 
+			1 copy of the backup should be offsite 
+				offsite storage, cloud backup 
+4.4 Given a scenario, use common safety procedures 
+		static electricity isnt harmful to computers - discharge is 
+		High humidity over 60% can help, not practical 
+		Ground with your hand, "self ground" - touched exposed metal before touching component 
+			With POWER UNPLUGGED 
+			Do not touch ground of an electrical system 
+	ESD (Electrostatic discharge) straps 
+		Connect your wrist to a metal part of the computer
+		ESD pad - workspace for the computer that is also connected to metal 
+	ESD mats - standing or sitting, also connected to metal 
+	Equipment grounding - most computer products connect to ground 
+		Equipment racks will have a large ground wire
+		Dont remove ground connection, its to protect you 
+		And never connect yourself to the ground, you can be shocked 
+	Proper power handling 
+	Proper component handling and storage 
+		Try not to touch componenets directly, card edges only 
+		Store in HVAC regulated environment 
+		Avoid high humidity, silica gel packets can help 
+		Store in original padded box, or bubble wrap
+	Antistatic bags - safely move or ship components 
+		Also put newly purchased stuff in a bag 
+	Compliance with government regulations 
+		Health and safety laws, varying widely depending on location
+		Building codes, fire prevention, electrical codes
+		Environmental regulation, high tech waste disposal 
+	Personal safety 
+		Disconnect power before repairing PC - dont touch anything if youre not sure 
+			Don't repair internals of a power supply - just replace the whole thing 
+		Lifting techniques - lift with legs, back straight 
+			Dont carry overweight items, and get equipment to help lift 
+		Electrical fire safety - dont use water or foam 
+			Use carbon dioxide, FM-200, other dry chemicals 
+			Remove the power source if accessible. Or go to breaker 
+		Safety goggles - chemicals, printer repair, toner, batteries 
+		Air filtration mask - dusty computers, printer toner 
+4.5 Summarize environmental impacts and loacl environmental controls 
+	MSDS/documentation for handling and disposal - abbreviated as SDS 
+		Proper battery disposal - dispose at local hazardous waste facility 
+		Proper toner disposal - recycle and reuse, manufacturers may provide return box 
+			Some supply companies will offer a discount for each cartridge 
+		Proper disposal of other devices and assets - refer to SDS, dont just throw it away 
+	Temperature, humidity level awareness, and proper ventilation 
+		High humidity causes condensation, low causes static discharges 
+		Devices and people need constant cooling, ventilation is important 
+		Location/equipment placement 
+		Dust cleanup
+		Compressed air/vacuums
+	Power surges, under voltage events, and power failures 
+		UPS - Uninterruptible power supply - always available, even if you lose main power 
+			Standby UPS - always connected to main power, and then it moves over to battery backup
+			Line-interactive UPS - always connected to main power, but also to battery, easier transitiion
+			On-line UPS - always connected to battery, no switching needed 
+		Battery backup
+		Surge suppressor - storms, power grid changes, power spike, noise, etc. 
+			Filters out all that stuff, spikes diverted to ground 
+			Noise filters remove line noise 
+			Specs 
+				Joule ratings - amount of surge absorption 
+				Surge amp ratings 
+				Voltage let through ratings - how much voltage is let through during spike 
+4.6 Explain the importance of prohibited content/activity and privacy, licensing, and policy concepts 
+	Incident response
+		Chain of custody - control evidence, maintain integrity 
+			Everyone who contacts evidence 
+			Avoid tampering, maybe hashes 
+			Label and catalog everything, digital signatures, seal and store
+		First response - Identifies issue, logs, in person, monitoring data, etc. 
+			Can mitigate and limit scope of event 
+			Report to proper channels, dont delay 
+			Collect and protect information 
+		Inform management/law enforcement as necessary
+		Copy of drive (data integrity and preservation)
+			Copy not just files, but bit-for-bit
+			Remove the physical drive, use hardware write-blocker to preserve data 
+			Software imaging tools, or hardware copying 
+			Hashes for data integrity - you can see if its been altered 
+		Documentation of incident 
+			Internal ise and legal proceedings 
+			Summary information, overview of event 
+			Detailed explanation of data acquisition
+			The findings 
+			Conclusion 
+	Licensing/DRM (digital rights management)/EULA (end user license agreement)
+		Terms and conditions, overall use, how many copies, backup options
+		Valid licenses 
+			Per seat - x people you can handle software to, only they can use it 
+			Concurrent - x licenses can be used at the same time, can be different people 
+		Non-expired licenses 
+			Ongoing subscriptions, annual, 3 year, etc. until expiration date 
+		Personal use license vs corporate use license 
+			Personal - home user, usually with a single device 
+				Or group of devices by that person. 1 time purchase 
+			Corporate - per-seat or site license 
+				Software can be installed anywhere. Has renewals 
+		Open source license 
+			FOSS (Free and Open Source) - source code is freely available 
+				You can compile your own executable 
+			Closed source/commerical - Code is private, you get a compiled executable 
+			EULA - determine how the software can be used 
+	Regulated data
+		Credit card transactions - PCI DSS - standard for protecting credit cards 
+			6 control objectives 
+				Build and maintain a secure network systems 
+				Protect cardholder data 
+				Maintain a vulnerability management program 
+				Implement strong access control measures 
+				Regularly monitor and test networks 
+				Maintain an information security policy 
+		Personal government issued information
+		PII
+		Healthcare data 
+		Data retention requirements 
+4.7 Given a scenario, use proper communication techniques and professionalism 
+	Professional appearance and attire 
+	Use proper language and avoid jargon, acronyms, and slang when applicable 
+	Maintain a positive attitude/project confidence 
+	Actively listen, take notes, and avoid interrupting the customer 
+	Be culturally sensitive 
+	Be on time (if late, contact the customer)
+	Avoid distractions 
+	Dealing with difficult customers or situations
+	Set and meet expectations/time line and communicate status with customers
+	Deal appropriately with customers' confidential and private materials 
+4.8 Identify the basics of scripting 
+4.9

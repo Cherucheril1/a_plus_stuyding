@@ -1,0 +1,612 @@
+2.1 Summarize various security measures and their purposes
+	Physical security
+		Access control vestibule - 
+			All doors normally unlocked 
+				Opening one door causes others to lock 
+			All doors normally locked, need to badge in to unlock door 
+				Other doors stay locked until this one is locked 
+			For one at a time access, or group control 
+			
+		Badge reader - Magnetic swipe, RFID, NFC
+			Could be for time clocks, securty guard ID, access
+		Video surverillance - CCTV (Closed circuit television)
+			Additional capabilities, like license plate identification, facial recognition
+			Multiple cameras networked together and recorded ove time 
+			Could be 24/7, or motion sensing
+		Alarm systems
+			Circuit based - changes in environment. Like door or window is opened. 
+			Motion detection - Identify motion without a camera 
+			Duress - Push a button, by a person 
+		Motion sensors - []
+		Door locks 
+			Conventional - lock and key
+			Deadbolt - Physical bolt, metal between door and door frame 
+			Electronic - Keyless, PIN 
+			Token-based - RFID badge, magnetic swipe, key fob
+			Biometric - hand, finger, retina prints 
+			Multi-factor - many of these simulatneously 
+		Equipment locks - Guards access to data center hardware 
+		Guards
+			Security guard - physical protection at the facility
+				Validates ID of existing employess 
+				Manages guest access 
+			ID Badge - picture, name, deatils worn at all times 
+			Access list - phyical list of names enforced by guard 
+			Visitor log 
+		Bollards - Prevent access, or restrict access
+			People can walk in, but no vehicles, etc. 
+			Can be safety as well 
+			Extreme cases like a moat
+		Fences - An obvious guard built around a perimeter 
+			Transparent or opaque, robust
+	Physical security for staff 
+		Key fobs - Small RFID key, add to keychain 
+			Replaces a physical key, in a smaller form factor 
+		Smart cards - Certificate based authentication 
+			Integrated or external card reader authenticates the card, "something you have" 
+			Better to combine with a password "something you know" 
+		Keys - Rare, standalone, cheaper. Like a safe, storage bin, cabinet
+			Key cabinet - for organization with lots of keys that various employees need 
+				With a formal check in and check out 
+				Log of borrowers 
+				Collateral to ensure return 
+		Biometrics - Stores mathematical representation of a bio reading, not a picture 
+			Difficult to "change" 
+			Not foolproof but useful, especially in combination with others 
+			Retina scanner - Uniqe capillary structure in the back of eye 
+			Fingerprint scanner 
+			Palmprint scanner 
+		Lighting - More light is more security. Attackers avoid light, cameras can see better 
+			Specialized design depending on use. Angle of light, amount to see details, etc. 
+		Magentometers - metal detector. Passive scanning 
+			Not useful for non metal devices 
+	Logical security 
+		Principle of least privilege - Rights and permissions shoudl be set to bare minimum 
+			All user accounts must be limited 
+			Same with applications. Prevents malware from gaining higher access 
+			Don't give users admin rights 
+		ACLs (Access control lists) - Allow or deny traffic through network or access to share 
+			Determine what should be handled by NAT or QoS 
+			On a router interface, determine if the traffic should be allowed in 
+			Source IP, Destination IP, TCP/UDP port number, ICMP, etc. 
+				Does it match the existing ACL? Decide whether to allow/deny 
+			Can be used in an OS to allow/deny access to file system 
+		MFA (Multifactor authentication) 
+			Something you are, have, know.
+			Something you do, somewhere you are 
+			Separate hardware tokens, can be expensive 
+		Email - Blocking unsolicited email
+			Stop it at gateway before it reaches the user. Could be a server, a cloud 
+			Scan and block malicious software
+		Hard token - Something you have. Maybe a physical number generator. Expensive 
+		Soft token - Authentication application. Pseudorandom number generator 
+			Can't guess it, and it changes constantly 
+			Saves money, no separate device to manage 
+		SMS (Short message service) - Texts, but more than that 
+			Login factor sent to SMS to predefined phone number 
+			Issues exist through interception, spoofing, phone number is reassigned, etc. 
+		Voice call - Phone call provides the token 
+			Same problems as SMS 
+		Authenticator application
+	MDM (Mobile device management) - Manage company owned and BYOD devices 
+		Centralized management of all devices 
+		Set policies on apps, data, camera, etc. 
+		Can be entire device or a partition 
+		
+	Active Directory - Database of everything on network. Foundation of corporate network 
+		User, printers, groups, devices, computers
+		Centralized authentication management 
+		Centralized access control 
+		Used by help desk - reset passwords, remove users, add users
+		
+		Login script - Automate a script after login. A series of tasks for a particular OU
+			Always have a particular drive mapped, authomatically share a printer, etc. 
+			Associate the script with a group policy 
+			Create different scripts for different OUs 
+		Domain - Name associated with a group of users and devices on a network 
+			All the information is stored on a central database on domain 
+			Access the database through Active Directory
+			Central point for troubleshooting or information about the network 
+			
+		Group policy/ updates - Manage computers and users 
+			Local and Domain policies 
+			Central console for login scripts, Network configurations, security
+			gpupdate - update a client if it doesn't require a restart 
+				gpupdate /force - update ALL policies for the user, not just new things 
+		Organizational units (OU) - keep the very large database organized 
+			All users in one OU, or create separate departments. 
+				Separate OU for buildings, regions, etc. 
+			Apply policies to certain OUs 
+			
+		Home folder - A user Home folder is assigned to a network folder 
+			Manage and backup files from the network 
+			Avoids storing files on the local computer 
+			May require you to train employees, to get them to save on the network instead 
+			
+		Folder redirection
+			Desktop, Downloads, Music, Documents, etc. 
+				These folders are redirected to a server 
+				Also some apps use the Windows Library folders 
+			User configurations - policies - windows settings - folder redirection
+			Offline files - you're not always connected
+				When you return to the network, the changes are updated 
+				
+		Security groups - create a group, specifiy permissions to the group, and then add users 
+			Some are built in - user, guest, remote management, event log readers 
+	
+2.2 Compare and contrast wireless security protocols and authentication methods 
+	Protocols and encryption
+		WPA2 (WiFi Protected Access 2) 
+			CCMP block cipher mode - block of data is encrypted and the entire block is sent 
+				Data confidentiality with AES encyrption 
+				MIC (Message integrity check) with CBC-MAC 
+			PSK (Preshared key) for authentication 
+				Hackers can listen in and brute force the key 
+					Especially with increased GPU and cloud sharing capabilities 
+		WPA3	
+			GCMP block cipher mode (Galois CMP) - stronger encryption than WPA2
+				Still using AES 
+				MIC with GMAC 
+			SAE (Simultaneous authentication of equals) - Changed from PSK
+				Mutual authentication 
+				Shared session key without sending the key across the network 
+				Same PSK is still a different session key 
+			
+		TKIP (Temporal Key Integrity Protocol) - encryption method, with WPA 
+		AES (Advanced Encryption Standard) - newer encryption solution starting with WPA2
+	Authentication
+		RADIUS - Remote Authentication Dial-In User Service 
+			A common protocol, wide variety of platforms and devices 
+			AAA (Authentication, Authorization, accounting) protocol 
+			Centralized authentication for users 
+				One source for routers, switches, all other network access 
+		TACACS+ - Terminal Access Controller Access-Control System
+			Remote authentication protocol 
+			+ is the latest version 
+		Kerberos - Network authentication protocol 
+			SSO - login once with credentials
+				When you login, you get a "ticket" that you show to other servers 
+		Multifactor (MFA, 2FA) - more expensive but more secure 
+			On the other hand, apps are inexpensive 
+2.3 Given a scenario, detect, remove, and prevent malware using the appropriate tools and methods 
+	Malware - malicious software that can gather infromation, coordinate together, show advertising, 
+	Delete data, encrpt data, etc. 
+	It takes advantage of a vulnerability, installs more malware, maybe even a bot 
+	This weakest link can be the user. Email links, a pop-up, drive by download, or worm 
+		Trojan - Software that pretends to be something else 
+			Circumvents existing security, but anti-virus may catch it
+			Once inside, it can do stuff. Even open gates for other viruses 
+		Rootkit - Originally a Unix technique, "root" 
+			Modifies core system files, part of the kernel 
+			Can be invisible to the OS, so task manager wont see it etc. 
+			Also invisibile to traditional anti-virus software 
+			
+			Look for unusual or out of place things, use a specific remover utility
+			Secure boot will check this 
+		Virus - malware that reproduces itself. Can spread through file systems and the network. 
+			May or may not cause problems; some are invisible, others can be annoying 
+			Anti-virus is good, but theres thousands of new viruses every week 
+				Which is why you keep the signature updated 
+		Spyware - malware that spies on you. Advertising, identity theft, fraud 
+			Can trick you into installing, P2P, fake security software, etc. 
+			Keyloggers - capture every keystroke and send it to the hacker
+		Ransomware - locks your data until you pay
+			Pay the hacker, they give you the decryption key
+			Or delete everything, restore from a backup 
+		Keylogger - Passwords, email messages, web site URLS, all of it is saved and sent
+			Circumvents encryption, since the keylogger has alread caught it 
+			Also clipboard, screen, instant messaging, search engine 
+		Boot sector virus - Some boot loaders can be modified to run malware 
+			Every time you start the system it runs, antivirus can't see it
+			Even after removing it, next time it reboots itself. 
+			But UEFI BIOS with Secure Boot blocks it 
+		Cryptominers - attackers use your CPU to mine. 
+			Maybe you visit an infected website, or its installed and always mining 
+	Tools and methods
+		Recovery mode - Windows Recovery Environmant 
+			You start a command line without starting the OS 
+			Gives you access to all the files, so its dangerous. Last resort 
+			Does give complete control to remove stuff 
+			Advanced startup from the OS, or hold shift while pressing restart 
+		Anti-malware and antivirus - often together 
+			On demand scan when you tell it to
+			Real time is better, always scanning 
+			Modern software even recognizes malicious activity instead of just a signature 
+		Software firewalls - Monitor the local computer
+			Will alert for unknown or unauthorized communication 
+			Microsoft Defender Firewall is default, and a bare minimum 
+		Anti-phishing training - No technology stops a user 
+			Train and test the users. Find out who's a weak link, train again 
+		User education regarding common threats 
+			One on one personal training, posters, message board, login messages, intranet page 
+		OS reinstallation - Only one way to guarantee malware removal 
+			Restore from backup is fast, but as long as its not already infected 
+			Manual installtion is more thorough
+			Companies may image your entire OS, so a user can just restore from there 
+2.4 Explain common social-engineering attacks, threats, and vulnerabilities 
+	Social Engineering - constantly changing
+		Phishing - Pretending to be someone you know, can trust 
+			Email, text, etc. - Check the URL 
+			Usually there's not something right with the website - its off 
+		Vishing - Voice phishing 
+			Caller ID is spoofed 
+			Could be fake security check, or bank needing information, etc. 
+		Spear fishing - targeted phising with insider information 
+			More believable attack 
+			Whaling - spear phishing the CEO 
+		Shoulder surfing - Just looking at someones screen 
+			Curiosity, espionage, competitive advantage 
+			Surprisingly easy - airports, planes, hallway facing monitors 
+			Surf from afar - binoculars, telescopes, webcam monitoring
+			
+			Control your input. Check your surroundings, position yourself well 
+				Privacy filters, so people next to you can't see 
+				Keep your monitor out of sight 
+		Tailgating - using an authorized person to gain access to building. No consent 
+			Piggybacking - authorized person is giving uninformed consent 
+			Have a policy for visitors 
+			Identify everyone inside - don't be afraid to ask 
+			One scan, one person 
+			Access control vestibule / airlock - more extreme 
+		Impersonation - Pretend to be someone else to gain access 
+			Using information from trash, internet, etc. to be believable 
+			Attack the victim as someone higher in rank 
+			Use technical details to confuse user 
+			Be friendly to ensnare them better 
+		Dumpster diving - Important information is thrown out 
+			Details can be used for an attack 
+			Trash timing is important 
+		Evil twin - Looks like a legitimate access point 
+			Maybe same SSID, logo, etc. 
+			May even be able to overwhelm the legit AP
+			WiFi hotspots are easy to fool 
+			Encrypt everything - HTTPS AND VPN 
+	Threats
+	
+		DoS(Denial of service) - Force a service to fail
+			Causes a system to be unavailable - maybe even a competitor 
+			Or creates a smokescreen to gain access to somethign else 
+			Doesn't have to be overloading a server - turn the power off for the bulding 
+				Can be unintentional, "friendly" DoS 
+				Limited bandwidth and someone is trying to download something big, etc. 
+		DDoS(Distributed denial of service) - An army of computers for DoS 
+			Harder to go through all the computers 
+			Can be international, or maybe a botnet for a coordinated attack 
+			People have no idea their participating 
+			
+			Filter out traffice patterns 
+			Anti-DDoS systems, third party technolgy, etc. 
+		Zero-day attack - OS and apps have vulnerabilities that aren't found yet 
+			Someone is always trying to find them - good guys and bad 
+			zero-day means the attack is on a vulnerability that was previously unknown 
+			CVE (Common vulnerabilities and exposures) - a database 
+		Spoofing (ARP poisoning) - every device has an ARP cache 
+			a list of all the IP addresses and MAC addresses associated with then 
+			Cache is empty on startup, and then you start populating it as you connect to devices 
+			Device sends out an ARP (Address resolution protocol) to figure out who the router is 
+			Attacker responds with their own MAC address, and claims to be the IP of the router 
+				So then the device updates its ARP cache with the attacker's MAC address 
+				Everything the device sends out is sent to the attacker instead 
+			Attacker also poisons the router, claiming to be the device 
+				So now its sitting in the middle of the conversation 
+		On-path attack - Attacker sits in the middle of a conversation and listens or modifies it 
+			"man in the middle attack" 
+			They redirect your traffic without you knowing, and then pass it to the original destination 
+			ARP poisoning - ARP has no security, they take advantage of that 
+			On-path browser attack - middleman is inside the browser you're using 
+				So you don't need access to their network or subnet
+				Just install malware on the device
+				Huge advantage for the attacker, you get stuff before its encrypted 
+				Malware then listens, waiting for you to login to your bank or something 
+		Brute-force attack - can't undo a hashing process to recover the password 
+			So you try every possible password to see if it matches the hash 
+			Takes a long time, and power. Stronger hashing algorithm slows this time down 
+			Trying this online is hard, very slow, and failed login usually locks the account 
+			Instead, they do it offline 
+				Obtain list of users and hashes 
+				Calculate password hash, compare it to stored hash
+				Lot of CPU resources and time 
+		Dictionary attack - Use a dictionary to find common words 
+			Faster than brute force 
+			Many common wordlists available, so they hope you used real words for the password 
+			Some of these wordlists are customized by language, line of work, etc. 
+			They can also substitute letters - p&ssw0rd, they'll try it 
+			Still takes a lot of time and resources 
+			Limited by a dictionary - can't guess random character passwords 
+		Insider threat - more than just leaving password on sticky note 
+			Some insiders are just up to no good 
+			Even if the insider doesn't have any special access, they have institutional knowledge 
+				Insiders know what to hit 
+			Extensive time and resources, studying vulnerabilities, etc. 
+			Attackers can also recruit insiders 
+				Randomware, offering Bitcoin in exchange for access 
+				One randsomware attack can give millions to the attacker - the bribe is just change 
+			Stay aware, have good backups 
+		SQL (Structured Query Language) injection 
+			Code injection - adding your own information into a data stream 
+				This shouldn't happen with good programming 
+			HTML, SQL, XML, LDAP, etc. injections 
+			SQL injection - modify requests, provide you with information you dont normally have access to
+			If you manipulate the database, you control everything 
+			Make sure any software is not susceptible to a SQL injection 
+		XSS (Cross-site scripting) - information from one site shared with another 
+			Usually because of browser security vulnerabilities
+				Update your browser 
+			Code should be able to stop this, but there can be errors 
+			Reflected XSS - Run a script inside the users browser 
+				Could be like a link in an email. Clicking runs a script 
+				Executes in a browser as if it came from the server, but with hacked script
+				Gain information, access, etc 
+			Persistent (stored) XSS attack
+				Post message to social network. Comment with a code. 
+				Persistent because everyone gets it
+				No specific target, or all viewers to the page
+				
+			Be careful when clicking links. Consider disabling JavaScript - may break websites 
+			Keep browsers and apps updated 
+			Developors should check their code 
+	Vulnerabilities 
+		Non-compliant systems - constant changes and updates. If a computer is off for 3 months, etc. 
+			SOE (Standard operating environment) approved hardware/software systems 
+				standard operation system image. Constantly updated. 
+			Need pathces, signatures, anti virus to be compliant. Or you can't access. 
+			Monitor application traffic, checking for unapproved apps.
+			Periodic scans to check for patches 
+		Unpatched systems - updates are automated after approval from IT
+			One forgotten system can be the weak link - happens a lot 
+			
+		Unprotected systems (Missing antivirus, firewall)
+			Security issues are roadblocks. Troubleshooting itself is insecure. 
+			
+		EOL OSs - security patches past selling the OS 
+			EOSL - stops selling and supporting 
+				Or a premium support option 
+				significant concern 
+		BYOD (Bring your own device) - Employee owns the degice, but also used for company. 
+			So both personal and corporate data on the device 
+			MDM is important. And makes sure it meets company requirements for securiy
+			Selling the device, if it catches a virus, etc. 
+2.5 Given a scenario, manage and configure basic security settings in the Windows OS 
+	Defender Antivirus - realtime 
+		Activate/deactivate - should only be for temporary trouleshooting 
+			Increases risk. Take 5 
+		Updated definitions - antivirus is only as good as updated signatures 
+			Automatically or manually 
+	Firewall - should always be enabled 
+		Activate/deactivate - troubleshooting with elevated permissions 
+			Can also turn it off in only parts of the network 
+			You can also block ALL connections
+		Port security - block or allow. Incoming or outcoming. 
+		Application security - knows all your applications, can disable them from here 
+			Custom rules, allowing only specific apps, etc. 
+			
+	Users and groups 
+		Local vs Microsoft account 
+			Local - login to only that specific device 
+			Microsoft - login to local, or to other technologies like onedrive 
+			
+		Standard account 
+		Administrator - super user 
+		Guest user 
+		Power user - not much more than normal user 
+	Login OS options 
+		Username and password 
+		PIN 
+		Fingerprint 
+		Facial recognition
+		SSO
+	NTFS vs share permissions 
+		File and folder attributes - security tab can sepcify permissions 
+		Share permissions is for access for others in the network 
+		The most restricted permission wins 
+		inheritance - permissions are inherited from the parent
+			Unless you move it to a diffent folder on the same volume 
+		Explicit permissions are specified. Explicit takes precendence 
+	Run as administrator vs standard user 
+		UAC (User account control) - limit software access 
+			Changing you password, using the network
+			Admins may see it for installing, Remote desktop, etc. 
+			Secure Desktop - the screen explaining the consequences 
+	BitLocker - encrypt entire volume 
+	BitLocker To Go - encrypt USB flash drives 
+	EFS (Encrypting File System) - encrypt files and folders 
+		Requires NTFS 
+		Not supported for Home 
+2.6 Given a scenario, configure a workstation to meet best practices for security
+	Data-at-rest encryption - FDE
+		As opposed to file system encryption
+		Useful to encrypt removable media as well 
+		Managing the key is critical 
+			Have a copy of the key, keep it handy 
+			May be integrated into Active Directory
+	Password best practices
+		Complexity requirements - resist guessing and brute force 
+			Increase password entropy
+			Length - at least 8 characters 
+			Character types 
+		Expiration requirements - all should expire after some time, automatically 
+			System remembers password history and requires unique passwords 
+			Critical systems maybe even more frequent changes 
+			Recovery process should be clear and secure 
+		Change default username and password always - databases of them exist that can be used 
+		BIOS/UEFI passwords -
+			Admin password is required to make changes to BIOS 
+			user password can prevent booting 
+	End-user best practices 
+		Use screensaver locks - enforce administratively, integrate with login credentials 
+		Log off when not in use 
+		Secure/protect critical hardware - locking hardware 
+		Secure PII (Persnonally identifiable information) and passwords 
+			Name, address, SSN, etc 
+			Control your input, aware of your surroundings
+			Privacy filters, keep monitor out of sight 
+	Account management 
+		Restrict user permissions - not everyone is an admin 
+			rights based on groups 
+		Restrict login times - limit access to certain times of day 
+		Disable guest account - all OSs include these extra accounts 
+			disable or remove them, and the guest accounts 
+			Disable interactive login - they can still work in the background, but nobody can login 
+			Change default username/passwords 
+		Use failed attempts lockout - prevents brute force attacks
+		Use timeout/screen lock - timing or even when you walk away 
+	Change default administrator's user account/password 
+	Disable AutoRun - executes when you plug in something 
+		Windows 7 and forth disabled this 
+	Disable AutoPlay - Choose the default option when something is plugged in 
+		Best to disable this as well 
+2.7 Explain common methods for securing mobile and embedded devices 
+	Screen locks - restrict access to device 
+		Facial recognition 
+		PIN codes 
+		Fingerprint
+		Pattern 
+		Swipe 
+	Remote wipes 
+	Locator applications 
+		Built in GPS. Find phone on a map. Control from afar 
+			Make a sound, display a message 
+			Wipe everything from a distance 
+	OS updates - Don't get behind, its a security concern 
+	Device encryption 
+		iOS 8 and later is encrypted with you passcode 
+		Android 5 and later is also encrypted by default 
+	Remote backup applications - Difficult to backup somehting always moving 
+		On going backup just constantly does it
+		Without wires, using the network. The cloud 
+		Restore device easily if lost or damaged 
+	Failed login attempts restrictions 
+		iOS can erase everything after 10 attempts 
+		Andriod will lock the device and ask for Google credentials
+			Else it wipes the phone 
+	Antivirus/anti-malware 
+		Apple iOS is a closed environment, so they try to find vulnerabilities
+		Android is more open, apps coming from anywhere. Easier for attackers 
+		Apps run in a sandbox inside the OS, dont have full access to data 
+		Third party virus and malware protection 
+	Firewalls - Mobile phones dont include a firewall 
+		Apps are available, but none seem to be widely used 
+		Enterprise environment can control mobile apps 
+	Policies and procedures 
+		BYOD vs corporate owned 
+			MDM - mobile device manager configures policies on devices 
+			For example, camera doesnt work at the lab
+			Entire device vs "work partition" 
+			Manage access control as well, to the device 
+		Profile security requirements 
+	IoT - sensors, smart devices, wearable technology
+		All have weak defaults; they're not security professionals 
+		Consider isolating IoT to their own network 
+2.8 Given a scenario, use common data destruction and disposal methods 
+	Physical destruction 
+		Drilling - or hammer. quick and easy, all the way through the platters or chips 
+		Shredding - heavy machinery. complete destruction 
+		Degaussing - electromagnetic. Remove the field, destroyinf data and electronics 
+		Incinerating 
+	Recycling or repurposing best practices 
+		Erasing/wiping - file level overwriting 
+			sdelete - overwrite information but keep the rest of the drive intact 
+			Third party services to delete the whole drive 
+		Low-level formatting - done at the factory, we cant do it 
+		Standard formatting - quick format removes the drive index, but leaves the data 
+			Regular format overwrites all data with 0. no way to retrieve 
+	Outsourcing concepts 
+		Third party vendor 
+		Certificate of destruction/recycling - confirmation that the data was destroyed 
+			Paper trail of broken data 
+2.9 Given a scenario, configure appropriate security settings on SOHO wireless and wired networks 
+	Home router settings 
+		Change default passwords - the right credentials can provide full control 
+		Firmware updates - provided by manufacturer
+			Closes architecture , proprietary 
+			Updates can be bugs, features, security. Install the latest 
+		Content filtering
+			Control traffic based on data withing the content 
+			Corporate control of outbound and inbound data 
+			NSFW, parental controls, protection from malware 
+		IP filtering 
+			Allow list - nothing passes unless approved 
+			Deny list - everything is allowed except the denied list 
+		Physical placement/secure locations - often a single device 
+			Router, swtich, AP, firewall 
+			Location may be in a secure room. APs will be in universal location 
+			Plan before installation
+		DHCP reservations 
+			Some networks statically assign things instead of using DHCP 
+				Not a securiy technique - only obscurity 
+			DHCP makes it easy - changes in one place that get transferred to all devices 
+			Reservation - To make sure a device has the same IP address each time
+				Table of MAC addresses matching an IP address
+		Static WAN IP - usually dynamically allocated 
+			Easier to manage if the IP address is static 
+			Coordinate with ISP so you have the same address for your internet connection 
+			Could be an additional cost 
+		UPnP - network devices automatically configure itself and find other network devices 
+			Zero configuration 
+			An app with UPnP will communicate with router and tell it to configure a port forward 
+			Best practice is to disable it
+			If necessary, better to use a screened subnet 
+		Screened subnet - DMZ 
+			Section of the network on the firewall that's not connected to the internal network 
+			Public access to public resources 
+	Wireless specific 
+		Changing the SSID (Service set identifier) - sometimes very generic, from which people 	
+			can look up the device, and find vulnerabilities
+		Disabling SSID broadcast - obscurity measure. Can be found anyway through network analysis 
+		Encryption settings - 
+			Open system - no authentication, no encryption 
+		Disabling guess access - No access to internal private network 
+			Can still be encrypted 
+			Often enabled by default 
+			Can use it instead for lab, IoT, etc. 
+		Changing channels - find an open frequency to minimize interference 
+	Firewall settings 
+		Disabling unused ports - administratively disable ports from inside 
+		NAC (Network access control) - requires authentication before anyone can communicate 
+			So even if there's an open enable physical port, no access 
+		Port forwarding/mapping - inbound traffic to SOHO router is rerouted to internal resource 
+			External IP/port number mapped to internal IP/port number 
+			AKA Destination NAT or Static NAT 
+			Does no expire until you turn it off administratively
+2.10 Given a scenario, install and configure browsers and relevant security settings 
+	Browser download/installation 
+		Trusted sources - Avoid 3rd party sites
+			Dont click links in emails, dont follow links to other websites 
+				Visit a browser directly always 
+			Hashing - Comfirm the downloaded file matches with the live server 
+				The file you installed matches the file on the server exactly 
+				Install hash checking application 
+				Available for GUI and command line - options in microsoft store 
+		Untrusted sources 
+	Extensions and plug-ins
+		Trusted sources - official browser extension library, chrome store, known websites, etc. 
+		untrusted sources - random or unfamiliar websites
+		Dont trust any software, and always have backups 
+	Password managers - all credentials in one location 
+		Credentials are encrypted and cloud synchronized 
+		Create unique passwords that you dont have to remember 
+		Some for corporate use 
+	Secure connections/sites - valid certificates 
+		Itll give you a message if something isnt right 
+		Look at certificate details
+			Domain name is expired or wrong, not signed or signed by someone untrusted, 
+			date and time is wrong, etc. 
+	Settings 
+		Pop-up blocker - prevent unwanted notifcation windows 
+			Should stay enabled, disable for troubleshooting 
+			You can block and enable for certain websites 
+		Clearing browser data 
+			History, downloads, passwords, etc. 
+		Clearing cache 
+			Parts of a website are stored locally - removes all of that 
+		Private browsing mode - limits gathered information 
+			Doesnt store information from a browsing session 
+			Good for privacy and troubleshooting 
+			Removes information when browser is closed 
+		Sign-in/browser data synchronization 
+			Share browsing data across multiple systems by signing in 
+			Computers, mobile devices, tablets, etc. 
+			History, bookmarks, extensions, etc.  
+		Ad blockers 
+			Many sites will track visits and recognize a return visit 
+			Diffcult to always recognize an ad, you can control the security level 

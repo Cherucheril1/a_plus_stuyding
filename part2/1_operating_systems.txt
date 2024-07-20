@@ -1,15 +1,616 @@
 1.1 Identify basic features of Microsoft Windows editions
+	Mainstream support for all versions to 5 years after release
+	There's no Windows 9 
+	Windows 10 was 1 OS on desktops, laptops, phones, tablets, etc. 
+	12 different versions, most recent in November 2021 (21H2)
+	x86 only needed 1GB RAM, x64 needs 2. Need 32 GB of storage for both. 
+		Microsoft DirectX 9 graphics card and WDDM driver, 800X600 resolution min. 
+	
 Windows 10 editions
-	Home
-	Pro
-	Pro for Workstations
-	Enterprise
+	Home - Home users. Default edition for anyone outside of work environment. 
+		Integrates Microsoft account, and OneDrive backups
+		Windows Defender for antivirus and anti malware
+		Cortana - talk to your device. Now getting phased out
+	Pro - Business, professional version. 
+		Remote desktop host - other people in the organization can control your 
+		desktop.
+		BitLocker - full disk encryption (FDE). Everything on the drive is 
+		encrypted when you log out. 
+		Connect to active directory server on Windows domain, so the IT team can 
+		manage your device. 
+	Pro for Workstations - High end desktops. Enhanced performance and storage. 
+		4 physical CPUs, max RAM of 6TB
+		Resilient File System (ReFS) - available for Windows Server
+	Enterprise - Built for large implementations, with many desktops in the 
+	environment. 
+		Allows for volume licensing, for better prices. 
+		AppLocker - additional management capability. Can control what apps are running
+		BranchCache - remote site file caching, instead of pulling over WAN connections
+		Granular User Experience (UX) control - completely customize the available 
+			features in the user environment. 
+			Like for a kiosk, or a specific workstation.
+
 Feature differences
 	Domain access vs. workgroup
+		Active Directory Domain Services - A centralized database of the things on your network. 
+			Distributed architecture - so you have many active directory servers
+		Windows Workgroups - connect devices on same network, and share resources. Not centralized so 
+			every device has its own set of authentication credentials.
+		Windows Domain - Centralized authentication. Single login provides access to any resources. 
+			Supports thousands of devices.
 	Desktop styles/user interface
+		Work - Standard desktop, common user interface, limited customization
+		Home - Complete flexibility
 	Availability of Remote Desktop Protocol (RDP)
+		RDP - view and control the desktop of remote device. Connect using RDP client. This connects to
+		Remote Desktop Service that's running on the remote system, and provides access. Support for many 
+		different OSs available. Not supported in Home. 
+		Home can be a client only, the rest can be client and host. 
+		Home does support remote assisstance, so a technician can temporarily connect to your machine
 	Random-access memory(RAM) support limitations
+		All versions support 4GB RAM max for x86.
+		For x64:
+			Home supports 128GB RAM max 
+			Pro supports 2TB RAM max 
+			Pro Workstations and Enterprise support 6TB RAM max 
 	BitLocker
-	gpedit.msc 
+		Encrypting file system (EFS) - choose individual files and folders to be encrypted. 
+		BitLocker allows Full Disk Encryption (FDE) - which encrypts all the data on the drive and 
+			the OS itself. 
+		BitLocker isn't usually availble for Home. Check documentation to see.
+	gpedit.msc
+		Group policy editor - configure policies that manage users and systems. Could be part of 
+			Active Directory or a local system. 
+		Local Group Policy - gpedit.msc
+			Set policies on local device without using active directory. 
+		Group Policy Management Console - gpmc.msc
+			for business/enterprise setting. Integrated with Active Directory. 
+
 Upgrade paths 
-	In-place upgrade
+	In-place Upgrade
+		Upgrade keeps files and apps in place, just updating the OS underneath
+		Maintains consistency. Your  configurations, user accounts, files, apps, all migrate.
+		Saves hours of time. Up and running quickly
+		Cannot go from x86 to x64 and vice versa. Applies to all Windows versions. 
+		Start the upgrade setup from the existing OS
+		Different upgrade paths may be available to you, check documentation. 
+			Windows 7 or 8.1 to 10
+			8 > 8.1 > 10, no other way
+			10 > 11
+	Clean Install
+		Install means your overwriting everything and starting with a fresh installation
+		Wipe everything and reload. Backup files so you can restore them. Usually uses boot media 
+		to start the setup.
+		Can switch from x64 to x86 and vice versa. 
+		
+	Not really DVD drives anymore, now you download from internet. 
+	You'll create Windows installation media from Microsoft. Includes a media creation tool so you can 
+	setup your USB drive to be bootable. 
+	
+	Afterwards, check if it boots. And then some testing 
+		Applications working? User data still there?
+		You can go back with 
+			Start > Settings > System > Recovery > Go back
+			
+		Additional installations may be needed. 
+			Service packs, security packs, applications, drivers, updates, etc. 
+		Check Windows Update to see if you're all caught up. 
+		 
+1.2 Given a scenario, use the appropriate Microsoft command-line tool
+		Standard privileges - applies to any user. 
+		Administrative (elevated) privileges - member of the Admin group. You use an elevated prompt with 
+		more functionality. 
+		"help" command for ... help. 
+			help dir, help chkdsk, etc gives more information
+			[command] /? - same thing
+				close with "exit"
+		"cls" - clear the screen
+		
+	Navigation
+		"dir" - list files and directories
+		"cd" or "chdir" - change the working directory. Use "\" to specify volume, folder, file name
+			".." - the folder above the current folder
+		"md" or "mkdir" - make directory
+		"rd" or "rmdir" - remove directory
+		Drive navigation inputs
+			Each drive partition is assigned a letter. Primary usually C.
+			"C:" - primary, local storage drive  
+			
+	Command-line tools
+		"hostname" - view the Windows Device name of the device.
+			Can be changed in system settings
+			Especially useful when you have multiple terminals open
+		"format" - formats a disk for use with Windows. You WILL lose data. 
+		"xcopy" - copies multiple files in multiple folders and directory trees
+			"/s" - flag that says to copy subdirectories of the folder as well
+				The command will "print" all the files being copied. 
+		"copy" - copy files. "copy <source file> <destination file>"
+			Add flags before <source file>
+			"/v" - flag that verifies the new file is identical to source. 
+			"/y" - flag that answers yes in advance to the prompt asking to overwrite
+		"robocopy" - robust copy, better than xcopy, bunch of features. Windows 10 and 11. 
+		"gpupdate" - force a group policy update without having you logout and in. 
+			raw only applies changes to group policies
+			"/force" - updates EVERYTHING
+		"gpresult" - view the current configuration 
+		"shutdown" - shutdown command
+			"/s" - specifies shutdown
+			"/r" - specifies restart
+			"/t nn" - wait nn seconds and then shutdown 
+			"/a" - abort the shutdown countdown
+		"<command name> /?" or "help <command name>" - information about command
+			"help" - gives a list of commands
+		"diskpart" - runs a program that manages disk configurations. You can lose data, be careful
+		"winver" - opens the About Windows box
+		"ipconfig" - adapter information, IP information, configuration settings. 
+			"/all" - more information
+		"ping" - test reachability, determine round trip time
+			TTL (time to live) - number of hops remaining when the packet arrives
+				TTL=1 is first router, TTL=2 is the second router, etc.
+		"netstat" - network statistics
+			"-a" - show all active connections
+			"-b" - show binaries, requires elevation
+			"-n" - no names are resolved, only IP addresses
+		"nslookup" - Name server lookup, from DNS servers. 
+		"net" - Windows network commands
+			"view", "view \\<servername>" -  view network resources/shares
+			"use", "use <drive>: \\<servername>\<sharename>" - map the share to drive letter
+			"user" = view users on device, make changes
+		"tracert" - determine the route a packet takes to a destination and back
+			"-d" - no name resolution
+			Some firewalls won't allow a device to respond
+		"pathping" - combine ping and traceroute
+			First runs a traceroute, building a map
+			Then it pings each hop
+			"-n" - no name resolution
+		"sfc" - System file check. Tool that lets you repair corrupt system files
+		"chkdsk" - verify file system integrity of a volume, tries to fix logical file system errors
+		
+		
+1.3 Given a scenario, use features and tools of the Microsoft Windows 10 OS
+	Task Manager
+		Services - Non interactive applications. Hundreds of background processes
+			Manage all from one screen. Start, stop, restart, etc. 
+		Startup - Manage what programs start with a Windows login. 
+		Performance - CPU, memory, internet over time. Real time view, historical view. 
+			Network utilization, link speeds, etc. 
+		Processes - All running processes. Interactive and system tray apps, also other accounts. 
+			Move columns, add metrics. 
+		Users - Who is connected, and what are they doing. Disconnect a user, manage accounts. 
+	Microsoft Management Console (MMC) snap-in - mmc.exe. 
+		You can build your own console, add whatever utilities and views you want. Add snap ins. 
+		 
+		Event Viewer (eventvwr.msc) - Central event consolidation
+			Application, security, setup, system. Has information, warnings, errors, critical, 
+			successful audit, failure audit
+		Disk Management (diskmgmt.msc) - Manage disk operations
+		Task Scheduler (taskschd.msc) - Schedule an application or script
+			Predefined schedules, or custom ones. Can also organize tasks. 
+		Device Manager (devmgmt.msc) - Manage drivers and connected devices.
+			OS doesn't talk directly to most hardware, it needs drivers. 
+			Drivers are hardware and OS specific. Older versions may not necessarily work. 
+		Certificate Manager (certmgr.msc) - View user and trusted certificates
+		Local Users and Groups (lusrmgr.msc) - Users could be administrator, guest, regular
+			Users can also be added to a group, so that you can make mass changes. 
+		Performance Monitor (perfmon.msc) - long term statistics on disk, memory, CPU, etc. usage
+			Set alerts and automatic actions. Store statistics so you can analyze it later. 
+			Built in reports to view the data. 
+		Group Policy Editor (gpedit.msc) - Central managament of users and systems on the network
+			Security policies, software restrictions, etc. 
+			Can be part of Active Directory (gpmc.msc) or for local device (gpedit.msc). 
+	Additional tools
+		System Information (msinfo32.exe) - system overview. Hardware resources like memory, OS, 
+			conflicts, interrupt settings. Information about components, like input, display, network
+			Software environment - drivers, print jobs, running tasks
+		Resource Monitor (resmon.exe) - Detailed real time view of performance. 
+		System Configuration (msconfig.exe) - Manage boot processes, startup, services, etc. 
+		Disk Cleanup (cleanmgr.exe) - Find unused or unneeded files. 
+		Disk Defragment (dfrgui.exe) - move file fragments so they are contiguous, improving read
+			and write time. Not necessary for SSDs. There's also a graphical version in drive properties
+			Requires elevated permissions
+		Registry Editor (regedit.exe) - Windows Registry editor. Huge master database, which is a 
+			hierarchical database about kernel, drivers, services, SAM, interface, applications, 
+			almost everything. Backup your registry before changes. 
+	
+1.4 Given a scenario, use the appropriate Microsoft Windows 10 Control Panel utility
+	Internet Options 
+		General - is basic overview of the browser presents information
+		Security - Different access options based on site location
+		Privacy - how much information you share. Cookies, pop-ups, private browsing
+		Content - Certificates and auto-complete. 
+		Connections - VPN and proxy settings
+		Programs - Default browser, plugins, etc. 
+		Advanced - detailed congiguration settings
+	Devices and Printers - Everything on the network
+		Desktops, laptops, printers, etc. 
+		Less complex than device manager. Has properties, configurations, etc.
+	Programs and Features - Installed applications
+		Uninstall, size, version
+		Turn Windows features on/off
+	Network and Sharing Center - All network adapters
+		All network configs
+	System - Computer information. Version and edition
+		Advanced system settings, remote desktop
+	Windows Defender Firewall - Protect from attacks. Integrated into OS and automatically on. 
+	Mail - Icon doesn't appear unless you already downloaded a mail client like Outlook
+		Access to local mail configuration. Account information and data files. 
+	Sound - Output options. Multipe devices may be available.
+		Set levels for input and output
+	User Accounts - Local user accounts. Domain accounts are stored elsewhere. 
+		Account name and type. Change password, picture, certificate information
+	Device Manager - Drivers n shiz. First place to look when hardware isn't working
+	Indexing Options - Speed up the search process. Control what information is searched, like 
+		browser history, certian user folders, etc. You can also include/exclude any folder
+	Administrative Tools - Useful system tools
+	File Explorer Options - Manage files/directories. 
+		General - How folders work, what clicking does, etc
+		View - Hidden files, hide extensions, other things
+		Search - disale index searching, search non indexed areas.
+	Power Options
+		Hibernate - open docs and apps are saved to disk. Common on laptops, used for Fast Startup
+		Sleep (standby, suspend) - Open apps are stored in memory. Saves power, quick startup. When power is low, it'll
+			switch to hibernate
+		Power plans - Customize power usage. What happens when you close the lid, what if its 
+			charging, etc. Disable biometrics, fingerprint for power saving. Enable/disable fast 
+			startup
+			USB selective suspend - Can disable individual USB devices
+	Ease of Access - Usability enhancements, useful for everyone
+		Change display, keyboard, mouse, other I/O options
+		Use Windows without display, change mouse pointer, etc. 
+	
+1.5 Given a scenario, use the appropriate Windows settings
+	Time and Language - Windows can automatically set the time
+		Active Domain is very sensitive to synchronized clocks, default 5 minutes of tolerance
+		And change languages
+	Update and Security - Keep OS up to date. 
+		Automatic installation, or have active hours to control update time. 
+	Personalization - Change the way it looks and feels
+	Apps - Manage installed applications. Add Windows features like fonts, OpenSSH Server, SNMP
+	Privacy - Share app activity, customized ads. Share your language, for web content. Speech 
+		recognition can be enabled/disabled
+	System 
+		Change display options
+		Audio settings
+		Notifications, if they're on the lock screen
+	Devices - Manage all devices. Mouse settings, typing, stylus, etc. 
+	Network and Internet - Internet status, Chane IP settings
+	Gaming - Xbox Game Bar. Chat, join games, look for friends, etc. 
+	Accounts - Manage login account information
+		Email configuration 
+		Sign-in options
+	
+1.6 Given a scenario, configure Microsoft Windows networking features on a client/desktop
+	Workgroup vs. domain setup
+		Shared resources - folder or printer becomes available on network
+			Assign a drive letter to the share
+			Shares ending with $ are hidden
+		Printers - printer properties, can share printer. Can specify policies of access.
+			Someone else can "add" a printer and find the shared printer
+		File servers
+		Mapped drives - associate drive letter with share. Can require credentials, can reconnect 
+			automatically 
+			Command line: "net use h: '<location>'"
+	Proxy settings - Change the traffic flow, works as an "in between"
+		Define address and exceptions manually
+	Public network vs. private network
+		Private - share and connect to devices also on the network. Home or work network
+		Public - No sharing, like a coffee shop.
+		Different security settings for private vs public
+	File Explorer navigation - network paths
+		Connect with map network drive, specify
+		To disconnect, you rightclick and disconnect
+	Metered connections and limitations 
+		Metered reduces data usage, slow network links, limited bandwidth, etc. 
+		You can also set limits on how much data is being used, etc. 
+		Alerts, set by app, etc. Change update and auto sync settings. 
+	
+	Local OS firewall settings 
+		Application restrictions and exceptions 
+			Exceptions allow an app or feature through Windows firewall. 
+			Set these separately for public and private networks. 
+			Predefined exceptions exist, you can also set custom rules for access
+		Configurations
+			Block all incoming connections, including your whitelist
+			Modify the notification settings
+	Client network configuration
+		IP addressing scheme
+			DHCP - Automatic, default IP addressing
+			APIPA - no static address, no DHCP server. Communicate locally, link-local address. 
+				169.254.1.0 to 169.254.254.255
+				No internet connectivity
+			Static address - Assign all IP configurations manually. Need to know specific details
+		DNS settings - 
+		Subnet mask - Identifies the subnet you're in 
+		Gateway - The router's address that allows communication with the outside world
+		Loopback address : 127.0.0.1 to troubleshoot. Always there. 
+		Alternate configuration - instead of APIPA, you get a manually preset configuration
+	Establish network connections
+		VPN - Creates an enrypted tunnel between the device and the concentrator. 
+			VPN concentrator - a machine set up at the organization
+			So you can access the corporate network securely from a remote workplace
+			Could be built in Windows VPN, or 3rd party software, etc. 
+			You could integrate a smart card for additional authentication
+		Wireless
+			Network name - SSID (Service Set Identification)
+			Security type - encrption methods
+			Encryption type - TKIP, AES
+			Security key 
+				WPA2 Personal - everyone has the same security key
+				WPA2 Enterprise - 802.1x authentication with username and password
+		Wired - Windows picks the fastest type as default between wired, wwan, etc.
+		Wireless wide are network (WWAN) - Specialize hardware, maybe with an antenna. Access to the 
+			cellular network. Can have access through tethering or hotspot. Requires 3rd party software. 
+	
+1.7 Given a scenario apply application installation and configuration concepts
+	System requirements for applications 
+		32 bit vs 64 bit dependent application requirements
+			32 bit (x86) processors store 2^32 values
+			64 bit (x64) is 2^64. 4GB vs 17 billion
+			
+			Hardware drivers are specific to OS verson
+			32 bit OS can't run 64 bit apps, but 64 bit OS CAN run 32 bit apps. 
+		Dedicated graphics card vs integrated
+			Integrated means CPU and GPU are on same chip. System memory used for graphics. 
+			Dedicated graphics card (discrete graphics card) has its own processor, its own 
+				VRAM (Video RAM)
+		RAM requirements - app has to execute within the memory
+			Should be a lot more than OS requirements 
+		Central processing unit (CPU) requirements
+			Processing speed, measured in GHz. Good starting point for relative speed, but other factors 
+				are important. 
+		External hardware tokens - Manage application usage, limit access to authorized users. 
+			Usually a USB device. Could be annoying to manage. Usually for high end software.
+		Storage requirements - Drive space, initial installation, app requirements. 
+	OS requirements for applications
+		Application to OS compatibility
+		32 bit vs 64 bit OS
+	Distribution methods
+		Downloadable 
+			Direct from the manufacturer ideally. Or centralized app store. Avoid 3rd party
+		Physical media
+			optical media, USB drive, etc. For a remote location. 
+		ISO mountable - Optical disk image
+			A single ISO file/ISO image has files and folders
+			Sector by sector copy of the optical drive. 
+				Optical drives have a standard format for the information, ISO 9660 file system
+			Mount in the OS, appears as separate drive
+	Other consideration for new applications
+		Impact to device - app stops working, slowdown, delete files
+		Impact to network - Access to internal services, rights and permissions to file shares 
+		Impact to operation - Jobs can be time sensitive. Updated app can cause workflow changes. OR HALTS. 
+		Impact to business - Sensitive to downtime and outages, other parts of business could rely on 
+			this app, etc. Single change can cause cascading issues. 
+			
+1.8 Explain common OS types and their purposes
+	Workstation OSs
+		Windows - great industry support, good selection of OS options, good variety of software
+			support. But large userbase means more security problems, and hardware will require 
+			drivers
+		Linux - Unix based OS, free. Many distributions for different purposes. Works on good 
+			range of hardware, has an active and great community. Could have limited driver 
+			support, and limited support in general. Support is community focused, not a particular
+			computer
+		macOS - Desktop OS for Apple hardware. Easy to use, very compatible with its own apps, 
+			much better security because of closed market. But requires Apple hardware, less support 
+			than PC, and expensive. 
+		Chrome OS - Based on Linux kernel, centers around Chrome browser. Apps tend to be web based. 
+			Many different manufacturers for "Chromebooks", and its very minimal hardware. Cheaper
+			but storage is usually in the cloud
+	Cell phone/table OSs
+		iPadOS - OS for iPads, variant of iOS. Safari is the desktop browser, second monitor with
+			Sidecar, can use a keyboard/mouse, supports multitasking
+		iOS - Based on Unix, closed-source. Apps are developed with iOS SDK(Software developer kit) 
+			that runs on macOS. Apps must be approved by Apple, and are distributed in App store. 
+		Android - Open source OS based on Linux. Supported on many different devices. Apps are 
+			developed with Android SDK that works on Windows, macOS, and Linux. Apps from Google Play
+			or third party. 
+	Various filesystem types
+		NTFS (New Technology File System) - Improvements over FAT32 like quotas, file compression
+			encryption, symbolic links, large file support, security, recoverability
+			Not very compatible, pretty much for Windows. But most OSs can at least READ this 
+			system
+		FAT32 (File Allocation Table 32) - 2TB volume sizes, 4GB max file size
+		ext3 (Third extended filesystem) - Common for Linux
+		ext4 (Fourth extended filesystem) - Common for Linux and Android OS
+		APFS (Apple File System) - Optimized for SSDs, has encryption, snapshots, better data integrity
+		exFAT (Extensible File Allocation Table) - Flash drive for Windows. Larger than 4GB files. 
+			Compatible across OSs. 
+	Vendor life-cycle limitations
+		EOL (End-of-life) - Policies depends on company
+		Update limitations - 
+	Compatibilty concerns between OSs - Some apps and data files can be shared. But for the most part, 
+		apps must be built for that OS. 
+	
+1.9 Given a scenario, perform OS installations and upgrades in a diverse OS environment
+	Boot methods 
+		USB/Flash drive - USB must be bootable, and computer must support boot from USB. 
+			Install the OS installation files to the drive
+			Configure BIOS of computer to boot from drive 
+		Optical media - CD-ROM and DVD-ROM 
+		Network - For an enterprise or something, when you have hundreds of OSs to install. 
+			Remote installation of the OS across the network
+			PXE (Preboot eXecution Environment) - Configure centralized server on the network with 
+				all the installation files. Then boot the computer into PXE mode, it searches the 
+				network to find the server, and begins installation. 
+		SSD/HDD - Store OS installtion files, boot from that. 	
+		Internet-based - Files are downloaded from servers on the internet. Like Linux. macOS 
+			Recovery installation is the same. Also Windows updates. 
+		External/hot-swappable drive - Store the installtion on a separate drive, boot from USB. 
+			Sometimes you can mount it as an ISO image, so it looks like an optical drive. 
+		Internal hard drive (partition) - You can install and boot the OS from a separate drive, 
+			or from one partition to the other. 
+	Types of installations
+		Upgrade - "in place upgrade" maintains existing apps and data
+		Recovery partition - A hidden partition with installation files
+		Clean install - Wipe it clean and reinstall. Migration tools are nice
+		Image deployment - Deploy a clone on every computer on the network. Quick, can be automated
+		Repair installation - An installation done just to clear problems with the OS without
+			touching the user files or apps 
+		Remote network installation - Local server or shared drive that has the installation 
+			details. Or even across the internet. 
+		Other considerations
+			Third party drivers may beed to be downloaded if necessary. Sometimes DURING the installation
+	Partitioning - Separate physical drive into logical pieces. Microsoft calls them "volumes" 
+		GUID (Globally unique identifier) Partition Table (GPT)
+			Requires UEFI BIOS. Can have up to 128 partitions. Max size is 9b TB.
+		Master boot record (MBR) - Max partition of 2TB. 
+			Primary partition - the bootable partitions. Max of 4 per disk, one can be marked "active"
+			Extended - If you need more partitions, but none are bootable. 
+		DELETES DATA 
+	Drive format
+		Quick format - creates a new file table, doesn't delete all the old data instantly, so you 
+			may be able to recover data. default format during installation for Windows 10 and 11
+			No additional checks 
+		Full format - "diskpart" in terminal. Writes 0s to the whole disk, the data is unrecoverable
+			Checks the disk for bad sectors, can be time consuming
+	Upgrade considerations
+		Backup files and user preferences
+		Applications and driver support/backward compatibilite
+		Hardware compatibility, OS requirements. Hardware compatibility check
+	Feature updates
+		Annual updates with new features
+		Quality updates - monthly updates to security, bugs
+		Support for 18-36 months after release
+	
+1.10 Identify common features and tools of the macOS/desktop OS
+	Installation and uninstallation of applications
+		File type
+			.dmg - Apple Disk image. Mountable as a drive in Finder
+			.pkg - Installer package. Runs through an installer script. 
+			.app - Application bundle. Contains necessary files to use the app
+		App Store - Centralized updates and patches for the OS and apps. 
+			List of all apps you've installed to manage them. Patch management. 
+		Uninstallation process
+			Move a .app file to the Trash, it contains all the app files
+			Some require a special uninstaller program included with it
+	Apple ID and corporate restrictions - Personal Apple products use a personal Apple ID
+		Companies used Managed Apple IDs using Apple Business Manager. 
+			Integrate with Active Directory
+			Connect with existing MDM(Mobile device manager)
+			Assign and move apps and content to users 
+	Best practices
+		Backups - Time Machine is built in. All files are backed up to a repository. Then it 
+			adds hourly changes, daily, for a whole month. Then monthly updates. 
+			Continue as long as you have drive space. It starts deleting oldest files when its full
+		Antivirus - No built in software, but plenty of 3rd party options. 
+		Updates/patches
+	System Preferences - Equivalent of Control Panel
+		Displays - Location of multiple displays, primary display, Apple Meny location, individial 
+			display settings, color, etc. 
+		Networks - Configure network interfaces. IP information, detailed settings
+		Printers & Scanners - manage them, configure individual settings, rights and permissions
+			Printer status - toner, etc. 
+		Privacy - Limit app access to private data. Manage access to camera, microphone, location, 
+		Accessibility - Allow apps to use system input. Scripting and automation. Limits third party
+			applications
+		Time Machine - Automated backups
+	Features
+		Multiple desktops
+		Mission Control - View everything that's running. Spread desktop to viewable area. Create 
+			multiple desktops, or "spaces". Swipe up with 3 fingers or Control + Up Arrow. 
+		Keychain - Passwords, notes, certificates management. Integrated into macOS, apps can access 
+			Keychain for authentication. 
+			Everything inside is encrypted. Decryption key is associated with the login credentials
+		Spotlight - Equivalent to Windows search. Click the magnifying glass or Command+Space. 
+			Define search categories in system preferences 
+		iCloud - integrates Apple devices. Calendar, photos, documents, contacts, etc. 
+			Backup iOS devices. Store files in iCloud drive, similar to Dropbox, Google Drive.
+		Gestures - More than point and click. Configure them in preferences. 
+		Finder - Equivalent to File Explorer. 
+		Remote Disc - Use optical drive from another computer
+			Designed for copying files, doesn't work with audio or video discs. 
+			Preferences, Sharing 
+		Dock - Fast access to apps, launch shortcutted programs. Keep folders in dock as well. 
+			Move to different sides of the screen, edit features. 
+	Disk Utility - Manage disks and images. File system utilities, partition, create images
+	FileVault - FDE for macOS. Everything on disc is encrypted. Only way to access is with login 
+		credentials or iCloud login. macOS won't start without authentication. 
+	Terminal - Command line access to OS. Manage files, run scripts, settings
+	Force Quit - Stop an app from executing. Command+Option+Escape. Or Option+click
+	
+	
+1.11 Identify common features and tools of the Linux client/desktop OS - Similar to macOS, since 
+		both are Unix 
+	Common commands
+		ls - "dir", list directory. Files, directories, could be color coded 
+			ls -l : for more information 
+			ls -l | more : to view more, limited by pages at a time
+		pwd - print working directory. Shows the current working directory path
+		mv - move a file. Also rename it. 
+			mv <source file> <destination file>
+		cp - Copy a file. Or directories. 
+			cp <source> <destination>
+		rm - remove a file. or directories that are empty. Else, use -r
+		chmod - change mode of a file system object. 
+			r is read, w is write, x is execute
+			File permissions depending on user
+			chmod <mode> <file> 
+				<mode> is a 3 digit number, representing U, G, O permissions
+				the digit is from 0-7 depending on permission. 
+				0 - none. 1 - X. 2 - W. 3 - WX. 4 - R. 5 - RX. 6 - RW. 7 - RWX 
+				
+				<mode> can also be 3 digit "letter"
+					Representing group, operation, permission
+					a-w : All users, remove, writing privileges
+					u+x : User, add, execution privileges
+		chown - change file owner and group. Requires sudo. 
+			sudo chown [Owner:Group] file
+				Group is optional
+		su/sudo - Gives elevated priveleges for a single command. Requires authentication. 
+			Can also be a different user than current one. 
+			Su makes you become a super user. Every subsequent command is executed as such.
+			Continues until exit command
+		apt-get - Advanced packaging tool. Lets you install, update, remove packages. 
+			sudo apt-get install wireshark
+		yum - Yellowdog Updater, Modified. 
+			install, update, remove RPM (Red Hat Package Manager) packages
+			So you may be using apt-get or yum for your particular distribution
+		ip - Manage network interfaces 
+			ip address : View interface addresses
+			ip route : View IP routing table 
+			sudo ip address add <address>/<mask> dev <name of adapter>  
+				Configure IP address of an interface 
+		df - Disk Free, view file systems and free space 
+			Default is to show space in number of blocks 
+			df - h : human readable sizes, MB etc. 
+		grep - Find text in a file, also search through many files at a time
+			grep <Pattern> <File> 
+			Prints the lines that have the pattern word 
+		ps - View current processes and PID (Process ID) 
+			ps : View user processes 
+			ps -e : All processes 
+				ps -e | more : the organzied view. Q to quit 
+		man - manual, "help" command. like "man grep" for help on the grep command
+		top - View CPU, RAM, resource utilizations, live updates. Hit enter to manually refresh
+			Can kill, halt, other stuff. Check man top. Q for quit. 
+		find - Find a file by name or extension 
+			Search through any or all directories 
+			find . -name "name" : . for current directory. -name specifies how to search. 
+				"name" can be like "*.txt", so all text files
+		dig - Domain Information Groper - Lookup information from DNS servers 
+			Detailed domain information
+			Not automatically included with Windows, but can be added 
+		cat - Concatenate, link together in a series 
+			Copy a file/files to the screen 
+				cat file1 file2 
+			Copy files to file 
+				cat file1 file2 > file3 
+		nano - Full screen text editor 
+			Included with many distributions, can be installed 
+			Select, mark, copy, cut, paste text 
+	Best practices
+		Backups - Command line and graphical options, may be included with distribution
+			tar - Tape Archive. Any type of media 
+				Easy to script into a backup schedule 
+			rsync - sync files between storage devices 
+				Instant or scheduled 
+		Antivirus - relatively few viruses and malware in Linux 
+			Clam Antivirus - open source antivirus 
+			Use real time scanning, always update signature database 
+		Updates/patches - apt-get or yum. Can also use Software center, the Linux "App store"
+	Tools
+		Shell/terminal - command line access to the OS 
+			OS maintenance, run scripts, manage files
+		Samba - Add SMB to Linux 
+			File and print sharing, Active Directory integration 
+			Integrate Linux into a Windows environment 

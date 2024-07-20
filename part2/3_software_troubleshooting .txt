@@ -1,0 +1,305 @@
+3.1 Given a scnario, troubleshoot common Windows OS problems 
+	Common symptoms 
+		BSOD (Blue screen of death) - Windows stop error 
+			Bad hardware, drivers, applications
+			Last known good login. system restore, rollback driver, safe mode 
+			Reseat or remove hardware 
+			Run hardware diagnostics
+				Manufacturer or built into BIOS 
+		Sluggish performance 
+			Task manager - check for CPU, memory and power usage
+			Performance tab to monitor for trends 
+			Windows Updates
+			Disk space open space 
+			Heat flow, anitmalware 
+		Boot problems - can't find the OS 
+			Boot loader replaced or changed 
+			Check boot drives, remove USB drives, reboot 
+			Startup repair
+				NTLDR (NT loader) missing
+				Missing operating system 
+				Boot to safe mode 
+			BCD (Windows boot configuration database)
+				manually reconfiguring the system 
+				Recovery console: bootrec /rebuildbcd 
+			NTLDR (NT loader) missing 
+		Frequent shutdowns 
+		Services not starting 
+			Check device manager and event viewer. Could be bad driver or hardware 
+			Try starting manually, check account permissions, confirm service dependencies 
+				Check system files, reinstall application 
+		Applications crashing - app stops working 
+			Might just be an error message, or it just dissappears 
+			Look at Event Log for useful information 
+			Reliability Monitor - history of application problems. Checks for resolution 
+			Reinstall application
+		Low memory warnings 
+			You'll get a message 
+			Check task manager and close the largest processes 
+			Virtual memory - more room for swapping applications 
+				You can configure this in settings, increase it, etc. 
+		USB controller resource warnings 
+			Different controllers support a different number of endpoints. 
+			Different devices require a different number of endpoints 
+				Exceed it and you "run out of resources" 
+			Move the device to a different interface
+			USB 2 may support more endpoints 
+			Match the interface to the device capabilities - 2 with 2 and 3 with 3
+		System instability - general system failures
+			Full diagnostic - could be anything 
+			Hardware diagnostic and storage and memory checks 
+			SFC (System file checker) - check files in the OS 
+			Run an antimalware 
+		No OS found 
+		Slow profile load 
+			Roaming user profile - desktop follows you to any computer and changes synced 
+			Network latency makes this load slowly 
+				Could be slow to login, or apply policies, etc. 
+			Local domain center at the site would be better 
+		Time drift - internal clock drifts over time 
+			Enable automatic time - maybe manually if privacy settings 
+	Common troubleshooting steps 
+		Reboot - software bug gets solved 
+			Or applications is using too much, so stops it 
+			Memory leak slowly eating RAM - clears the RAM 
+		Restart services 
+			Services are apps in the background, no user interaction 
+			Similar issues as above
+			View status in Task Manager, services tab 
+			Start, stop, restart, modify the service 
+		Uninstall/reinstall/update applications 
+			Problems with application files or configurations 
+			Can do this in Control panel 
+			Repair - install missing files, replace corrupted files, fix shortcuts, registry, drivers 
+			Reset - remove all applciation data, factory reset, original installation
+			Uninstall 
+		Add resources - Check utilization on task manager 
+			performance monitor - long term analysis
+			Add or replace hardware
+			Free up drive space yourself or with software 
+		Verify requirements
+			Check with the manufacturer - minimum hardware requirements 
+				Or drivers, libraries, etc. 
+			System information tells you your current situation 
+		System file check - verify integrity of the OS 
+			sfc /scannow 
+		Repair Windows - from settings or the advanced boot options 
+		Restore - install a previous configuration
+			Pick restore point and let the system reboot 
+		Reimage - faster than trying to find a tiny issue 
+			Organizations may have prebuilt images so you dont waste time 
+			At home, you have the built in recovery options 
+		Roll back updates 
+		Rebuild Windows profiles - profiles can be corrupted 
+			User profile service failed to login, cannot be loaded 
+			User documents may be missing 
+			Delete the bad profile, create a new profile 
+			Login with domain adminstrator rights 
+				Rename the Username folder to save important files 
+			Backup the user's registry 
+			Delete the existing registry
+			Restart the computer 
+			Login to computer with user account 
+				New profile is built under existing username folder 
+			Login as domain adminstrator to copy over backup files 
+			Dont copy the entire old profile smh 
+3.2 Given a scenario, troubleshoot common PC security issues 
+	Common symptoms 	
+		Unable to access the network 
+			Malware is poorly written, so could cause performance issues
+			Also by design - doesn't want you to download help. Control by disabling you 
+			OS updates could fail to keep you vulnerable 
+			Reload or clean with a malware cleaner or recover from known good 
+		Desktop alerts - browser push notifications 
+			Pretends to be malware infection, need to download, etc. 
+			Actual notifications only come from the antivirus utility
+			You can disable browser notifications - create an allow list or disable all
+			Scan for malware, cleanup, backup 
+		False alerts regarding antivirus protection
+			Browser or separate window. Asking to ressubscribe, system is locked, etc. 
+			May need a specific removal tool from a trusted antivirus site. 
+			Or delete everything and start from scratch
+		Altered system or personal files - renamed system files,
+			files dissapearing or encrypted, permissions changed, access denied, etc. 
+			Missing/renamed files 
+		Unwanted notifications within the OS 
+		OS update failures
+	Browser related symptoms
+		Random/frequent pop-ups 
+		Certificate warnings - someting isn't quite right, peak your attention 
+			Check certificate details. date/time, improper signature, etc. 
+		Redirection - instead of Google, browser goes somewhere else 
+			Should never happen. Malware is most common cause 
+			anitvirus isnt best 
+			Delete everything and install fresh or known good backup. 
+3.3 Given a scenario, use best practice procedures for malware removal
+	Best practice is a clean reinstall, always. Malware removal is alright. 
+	Known good back up or from original source. 
+	But cleanup for the sake of recovering data, maybe. 
+	
+	1. Investigate and verify malware symptoms
+		Odd error messages - app failures, securiy alerts. 
+			Maybe the antivirus is literally showing you. 
+		System performance issues - booting, app performance
+		Research the malware 
+	2. Quarantine infected systems 
+		Disconnect from the network to keep it contained 
+		Physical connections and wireless 
+		Isolate all removable media, set them aside and treat them as contaminated 
+		Prevent the spread - no file transfer or backups 
+	3. Disable system restore in windows 
+		Restore points make it easy to rewind, malware infects them 
+		No need to save an infested configuration 
+		Delete all restore points, removing all malware locations 
+	4. Remediate infected systems 
+		a. Update antimalware software
+			Signature and engine updates 
+			Automatic vs manual - manual is basically pointless 
+			Malware can prevent you from updating, so copy from another computer 
+				USB drive into infected system, and then quarantine it 
+		b. Scanning an removal techniques 
+			Built in is best, followed by trusted 3rd party 
+			Maybe a standalone removal app 
+			And then no way to know for sure, so now you should transfer files before destruction 
+			Safe mode - limited version of the OS just to get it running 
+				Could prevent bad stuff from running while allowing you to recover
+			Preinstallation environment - WinPW - Recovery consol, bootable CD, USB, etc. 
+			Maybe you need to repair your boot records, sectors, rebuild, etc. 
+	5. Schedule scans and run updates 
+		Built into the antivirus software, automatic updates and scans 
+		Or task scheduler to do this on a schedule 
+		OS system updates as well 
+	6. Enable system restore and create a restore point in windows 
+		Now you're clean, so you can turn this back on 
+		Create a restore point and start populating again 
+	7. Educate the end user 
+		One on one personal training to avoid this in the future 
+		Posters and signs with high visibility 
+		Message board, like a physical one 
+		Login messages
+		Intranet page, documentation for the user to read 
+3.4 Given a scenario, troubleshoot common mobile OS and applications issues 	
+	Common symptoms
+		Application fails to launch
+			Restart phone
+			Stop the app and restart it (force stop) 
+			Update the app 
+		Application fails to close/crashes 
+			App hangs - it stops working while everything else is fine 
+			Or app crashes, dissapears, error message 
+			
+			Restart device and try again 
+			Update the app 
+			Delete and reinstall the app 
+		Application fails to update 
+			This one doesnt update while every other app does 
+			Manually update - force it to start, or maybe you have to enter credentials first 
+			Restart the device and try to update again 
+		Slow to respond 
+		OS fails to update 
+			Check available storage - removed unused clutter 
+			Check download bandwidth, connect to WiFi 
+			Try a different network connection - different network 
+			Restart the device and try again 
+		Battery life issues 
+			Bad reception - always searching for signal 
+				Airplane mode will save battery when you know your in a bad area 
+			Aging battery - there's a limited number of recharges	
+				Replace the battery
+			Disable unnecessary features - wireless, BlueTooth, GPS 
+			Check app battery usage 
+		Randomly reboots 
+			Check the OS and app version, up to date 
+			Hardware check - battery health 
+				Not much options 
+			Contact Tech support, look at logs on the device 
+		Connectivity issues 
+			Intermittent connectivity 
+				Move closer to access point, or try a different AP 
+			No connectivity 
+				Make sure its enable, proper credentials are given 
+				Reset the device, can resolve it 
+				Same for BlueTooth 
+			BlueTooth 
+			WiFi
+			NFC - Limited troubleshooting 
+				Device may enable/disable it, so check 
+				Restart the device 
+				If payment related, remove the card and add it again 
+			AirDrop 
+				Distance between devices should be within 30 ft. 
+				Turn on WiFi and BlueTooth 
+				Check AirDrop discovery options 
+		Screen does not autorotate 
+			Disable rotation lock 
+			Restart the app, maybe the device is fine 
+			Restart the device 
+			Device support - could be a sensor problem 
+3.5 Given a scenario, troubleshoot common mobile OS and application security issues 
+	Security concerns 
+		APK (Android package) source 
+			Once its on the phone, it has huge level of access 
+			Dont install APK files from untrusted source 
+			iOS apps are curated by Apple, much safer 
+			Android, Google Play is better, or another trusted source 
+			Sideloading - installing from other sources, potentially causing problems 
+		Developer mode  - enable developer specific settings 
+			USB debugging, memory statistics, Demo mode settings 
+			iOS and iPadOS - use Xcode. Must use macOS 
+			Android - go to about phone and click build number 7 times 
+		Root access/jailbreak 
+			Purpose built - Mobile devices dont give direct access to the OS
+			Rooting for Android, jailbreak for iOS is a way to gain access
+			Install custom firmware, replacing the existing OS 
+			Uncontrolled access - circumvent security features, sideload apps 
+				MDM becomes useless 
+		Bootleg/malicious application 
+			Application spoofing 
+				Appears to be a legitimate app, but is bootleg or malicious 
+			Always check the source of a download, and legitimacy of app 
+	Common symptoms 
+		High network traffic - higher than normal use 
+			May indicate malware
+			Or Command and control signals sent from a central source 
+			Check data use reports 
+			Use 3rd part reporting app, from trusted source 
+			Antimalware scan 
+		Sluggish response time 
+			Running slowly, screen lags, poor input response 
+			Restart the device, check for OS and app updates 
+			Close apps not in use 
+			Factory reset and install needed apps 
+		Data-usage limit notification
+			Built in Android feature, but not iOS 
+			Set a warning and limit 
+				Can indicate malware infection, drill down on individual app usage 
+				Run a malware scan 
+		Limited internet connectivity 
+		No internet connectivity 
+			Malware doesnt want to be removed 
+			Disable and enable WiFi, or airplane mode 
+			Restart the device to clear the memory and reload drivers 
+			Malware scan, find and remove the problem 
+		High number of ads 
+			Malware wants to show ads to make money 
+			Adblockers could be even worse sometimes 
+			Once installed, its not in the list of available apps 
+			Run antimalware to remove it 
+		Fake security warnings 
+			Easiest way in - have the user install their malware 
+			Warnings seem legitimate but are not actual issues 
+			Malware can access user data and start doing stuff 
+			Dont click, dont install. If you do, run malware scan. 
+		Unexpected application behavior 
+			Apps unexpectedly closes, has delays, that werent there before 
+			Or it doesnt have all the normal features it has, or included features arent working 
+			High battery utilization 
+			update the app, check for malware 
+		Leaked personal files/data 
+			Unauthorized account access, or root access 
+			Determine the cause of data breach 
+				Perform app scan, malware scan 
+			Factory reset and clean install 
+			Check online data sources 
+				iCloud, google, Onedrive
+				Change passwords 
