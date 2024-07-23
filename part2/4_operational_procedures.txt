@@ -242,20 +242,165 @@ information management
 				Implement strong access control measures 
 				Regularly monitor and test networks 
 				Maintain an information security policy 
-		Personal government issued information
-		PII
-		Healthcare data 
-		Data retention requirements 
+		Personal government issued information - used for government services and documentation 
+			SSID, drivers license, etc. 
+			There are restrictions on collecting or storing government information
+		PII - any identifying information. Should be part of privacy policy 
+			People dont realize the importance of this data, complacency 
+			Attackers can use it to gain access or impersonate 
+			GDPR (General data protection regulation) - EU regulation 
+				Controls export of personal data, "right of erasure"
+				Site privacy policy details rights for user 
+		Healthcare data - PHI (protected health information)
+			Shared between provided, so needs security requirements 
+		Data retention requirements - keep files the change frequently for version control 
+			Keep at least a week, but really more 
+			Recovers from virus infection 
+			There are legal requirements depending on data type 
 4.7 Given a scenario, use proper communication techniques and professionalism 
 	Professional appearance and attire 
+		Match the required attire of the given environment
+			Formal - may be specific requirements 
+			Business casual - more relaxed 
+			Youll eventually find the right balance. Look at management 
 	Use proper language and avoid jargon, acronyms, and slang when applicable 
+		Be the translator instead of confusing them more
+		Communicate in terms that everyone can understand 
+			Puts them at ease 
+		Decisions are based on what you say 
 	Maintain a positive attitude/project confidence 
+		Positive tone of voice, partner with your customer 
+		Problems cant always be fixed - do your best, provide helpful options 
+		Attitude has a direct impact on customer experience 
 	Actively listen, take notes, and avoid interrupting the customer 
+		Even if you know the answer
+		Build a relationship with customer, dont miss information 
+		Notes to look back on later
+		Especiall on phone, listen first, fully 
 	Be culturally sensitive 
+		Use appropriate professional titles, when applicable 
+		Youre a teacher, not a warden - no insults or judgement
 	Be on time (if late, contact the customer)
 	Avoid distractions 
+		Personal calls 
+		Texting/social media 
+		Personal interrptions 
+		Talking to coworkers 
+		Apologize for delays and unintended distractions 
+		Create an environment for conversation 
+			In person, open and inviting, candy bowl 
+			On the phone, quite background, clear audio, stay off speakerphone 
 	Dealing with difficult customers or situations
+		Problems can be stressful - try not to add to it 
+		Do not argue with customers or be defensive 
+		Avoid dismissing customer problems 
+		Avoid being judgemental 
+		Make them smarter
+		Youll make big mistakes, remember that and remember them 
+		Clarify customer statements (ask open ended questions to narrow the scope of the problem, 
+			restate the issue, or question to verify understanding)
+			Keep an open mind, even if it seem obvious 
+		Do not disclose experience via social media outlets 
 	Set and meet expectations/time line and communicate status with customers
+		Offer repair/replacement options, as needed 
+		Provide proper documentation on the services provided 
+			No room for questions 
+		Follow up with customer/user at a later data to verify satisfaction 
+			Keep everyone informed, even if status is unchanged 
 	Deal appropriately with customers' confidential and private materials 
+		Located on a computer, desktop, printer, etc. 
+		Professional and private information, treat it with respect, how you want to be treated 
 4.8 Identify the basics of scripting 
-4.9
+	Script file types 
+		.bat - batch file: scripting for Windows at command line 
+		.ps1 - PowerShell: command line for system administrators 
+			Included with Windows 10 and 11 
+			Almost every aspect of Windows is accessible through commands in PowerShell
+			cmdlets (command-lets), executables, etc. 
+			Manage services, configure active directory, etc. 
+		.vbs - VBScript (visual basic scripting)
+			general purpose scripting 
+				Back end web server, scripting on Windows desktop, inside Office applications 
+		.sh - shell script, basically a batch file for Unix/Linux
+			Starts with #!, a sheband, or hashbang
+		.js - JavaScript, scripting inside a browser
+			Interactivity with HTML and CSS, almost every website has JS 
+			JavaScript is not Java, different developers, origins, use, etc. 
+		.py - Python, general purpose scripting 
+			Broad appeal and support, especially because of cloud stuff 
+			Runs across many different OSs 
+	Use cases for scripting
+		Basic automation - you dont have to be there, monitor and resolve problems before they happen 
+			Fast, as fast as the computer
+				No typing or delays, no human error 
+				Automate mundane tasks so you can do something else 
+		Restarting machines - restarting, app updates, security patches, etc. 
+			Troubleshooting restarting, one a day restart 
+		Remapping network drives - common task during startup
+			Automate software changes, add or move user data, backup, etc. 
+		Installation of applications - Install automatically 
+			Youre not taking a flash drive to every device 
+			Start installation with predefined answers 
+			Map the installation drive, install without user input, disconnect map drive, 
+				restart the system, all of that automatically 
+		Automated backups - at night or off hours. 
+			Saves a lot of time 
+		Gathering of information/data - get specific information from remote device 
+			Monitor performance, inventory management, hard/software configuration 
+			Security and vulnerability tests 
+		Initiating updates - OS, apps, drivers, etc. always changing 
+	Other considerations when using scripts 
+		Unintentionally introducing malware - make sure you know what youre installing 
+		Inadvertently changing system settings - Test all updates, track file and registry changes 
+		Browser or system crashes due to mishandling of resources 
+			Mishandling of resources, single character can have consequences 
+			Always have a backup, always test before deployment 
+4.9 Given a scenario, use remote access technologies 
+	Methods/tools 
+		RDP - share desktop from remote location 
+			RDP clients for macOS, Linux, etc. as well 
+			Technical support 
+			Open port of tcp/3389 is a big tell for attackers 
+				They can brute force it
+				Same for VNC 
+		VPN - encrypted private data traversing over public network 
+			Concentrator - single device that handles encryption and decryption 
+				may be integrated into firewall or something 
+			Many deployment options, special crytographic hardware, and some software only options 
+			Used with client software, sometimes built into OS 
+			Can be on demand, or always on 
+			VPN data is very secure
+				Authentication is critical, this is what attackers attack 
+				Should always use MFA (multifactor) with it 
+		VNC (Virtual network computer) - RFB (Remote frame buffer) protocol 
+			Clients for many OSs, many are open source 
+			Technical support 
+		SSH - over tcp/22. Telnet on tcp/23 is basically the same, but SSH is encrypted 
+			Like VPN, data is too secure, theyll attack the server or a client 
+			Public/private key pair is a way to authenticate 
+			Certain accounts should be disabled, like root 
+			Limit access to SSH by IP address 
+		RMM (Remote monitoring and management)
+			manage system from remote location
+				Patch OS, remote login, anomaly monitoring, hardware/software inventory 
+			Popular attack point, access should be limited 
+			Auditing is important - know whos connecting and what theyre doing 
+		MSRA (Microsoft remote assistance) 
+			No firewall configurations or port forwarding required 
+			User makes a request with details 
+				Send an invitation 
+			Technincian connects using the password in the request 
+			Replaced with Quick Assist in windows 10 and 11 
+			No ongoing RDP service, avoids unintended access 
+			Email with invitation details is a concern, consider voice comms. 
+			Ease of use could be a downside, social engineering 
+		Third party tools 
+			Screen sharing software - see and control a remote device 
+				GoToMyPC, TeamViewer 
+			Video conferencing software - multiuser meetings with video and audio 
+				Zoom, WebEx
+			File transfer software - Store and share documents in the cloud 
+				Dropbox, Google Drive, Box.com 
+			Desktop management software - manager end user devices and OSs 
+				Citrix Endpoint Management, ManageEngine Desktop Central 
+	Security considerations of each access method 
